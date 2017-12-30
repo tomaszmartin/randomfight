@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js ie8 lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"5aae39b65b","applicationID":"6281922","transactionName":"JgpaTEZZVF5UQ0lmXwsEQEpVGWtbX1ASR1dfX3VIRFpRUVBFD1pYSiJxbBRTTldfRU4KDDlISB0GbXxWbBgCUEIEDFhLGx5jbB4ORWgdTA==","queueTime":0,"applicationTime":607,"ttGuid":"","agentToken":null,"agent":""}</script>
+<script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o||n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({1:[function(e,n,t){function r(){}function o(e,n,t){return function(){return i(e,[c.now()].concat(u(arguments)),n?null:this,t),n?void 0:this}}var i=e("handle"),a=e(2),u=e(3),f=e("ee").get("tracer"),c=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,n){s[n]=o(d+n,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,o="function"==typeof n;return i(l+"tracer",[c.now(),e,t],r),function(){if(f.emit((o?"":"no-")+"fn-start",[c.now(),r,o],t),o)try{return n.apply(this,arguments)}finally{f.emit("fn-end",[c.now()],t)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=o(l+n)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,c.now()])}},{}],2:[function(e,n,t){function r(e,n){var t=[],r="",i=0;for(r in e)o.call(e,r)&&(t[i]=n(r,e[r]),i+=1);return t}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],3:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(o<0?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=r},{}],4:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function o(e){function n(e){return e&&e instanceof r?e:e?f(e,u,i):i()}function t(t,r,o,i){if(!d.aborted||i){e&&e(t,r,o);for(var a=n(o),u=m(t),f=u.length,c=0;c<f;c++)u[c].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function l(e,n){v[e]=m(e).concat(n)}function m(e){return v[e]||[]}function w(e){return p[e]=p[e]||o(t)}function g(e,n){c(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var v={},y={},b={on:l,emit:t,get:w,listeners:m,context:n,buffer:g,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",f=e("gos"),c=e(2),s={},p={},d=n.exports=o();d.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(o.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){o.buffer([e],r),o.emit(e,n,t)}var o=e("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!x++){var e=h.info=NREUM.info,n=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();c(y,function(n,t){e[n]||(e[n]=t)}),f("mark",["onload",a()+h.offset],null,"api");var t=d.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function o(){"complete"===d.readyState&&i()}function i(){f("mark",["domContent",a()+h.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-h.offset}var u=(new Date).getTime(),f=e("handle"),c=e(2),s=e("ee"),p=window,d=p.document,l="addEventListener",m="attachEvent",w=p.XMLHttpRequest,g=w&&w.prototype;NREUM.o={ST:setTimeout,SI:p.setImmediate,CT:clearTimeout,XHR:w,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1044.min.js"},b=w&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),h=n.exports={offset:u,now:a,origin:v,features:{},xhrWrappable:b};e(1),d[l]?(d[l]("DOMContentLoaded",i,!1),p[l]("load",r,!1)):(d[m]("onreadystatechange",o),p[m]("onload",r)),f("mark",["firstbyte",u],null,"api");var x=0,E=e(4)},{}]},{},["loader"]);</script>
+  <title>
+    FightMetric LLC :.: The World&#39;s First Comprehensive MMA Statistics Provider
+  </title>
+  <meta name="description" content="">
+  <meta name="viewport" content="">
+  <link rel="stylesheet" href="/blocks/main.css?ver=74442">
+  <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-2855164-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</head>
+<body class="b-page" data-link="home">
+    <header class="b-head">
+      <div class="b-head__nav-bar">
+  <div class="l-page__container">
+    <a class="b-head__logo" href="/">
+        <img src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/logo.png"
+             alt="FightMetric LLC :.: The World&#39;s First Comprehensive MMA Statistics Provider">
+    </a>
+    <menu class="b-head__menu">
+      
+          <li class="b-head__item">
+            <a class="b-head__menu-link" href="/statistics">
+              Stats
+            </a>
+          </li>
+      
+      
+          <li class="b-head__item">
+            <a class="b-head__menu-link" href="/data">
+              Feeds
+            </a>
+          </li>
+      
+      
+          <li class="b-head__item">
+            <a class="b-head__menu-link" href="/dev">
+              Dev
+            </a>
+          </li>
+      
+      
+          <li class="b-head__item">
+            <a class="b-head__menu-link" href="/company">
+              Company
+            </a>
+          </li>
+      
+      
+          <li class="b-head__item">
+            <a class="b-head__menu-link" href="/contact-us">
+              Contact Us
+            </a>
+          </li>
+            
+      <li class="b-head__item">
+        <a href="http://fmproduction.tv" class="b-head__menu-link" href="#" target="_blank">
+          Broadcast + Prod. <img src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/up_right_arrow.png">
+        </a>
+      </li>
+    </menu>
+  </div>
+</div>
+    <div class="b-head__sub-nav">
+      <div class="l-page__container">
+        
+      </div>
+    </div>
+
+    </header>
+    <section class="b-statistics__section">
+<script type="text/javascript">
+    function doNav(url) {
+        document.location.href = url;
+
+    }
+</script>
+<div class="l-page__container">
+<div class="b-statistics__header clearfix">
+  <ul class="b-statistics__tabs">
+    <li class="b-statistics__tabs-item b-statistics__tabs-item_state_current" data-tab="2">
+      <a class="b-statistics__tabs-link" href="http://fightmetric.com/statistics/events/completed">
+        Events &amp; fights
+        <i class="b-statistics__tabs-corner b-statistics__tabs-corner_type_down"></i>
+      </a>
+    </li>
+    <li class="b-statistics__tabs-item" data-tab="1">
+      <a class="b-statistics__tabs-link" href="http://fightmetric.com/statistics/fighters">
+        Fighters
+        <i class="b-statistics__tabs-corner b-statistics__tabs-corner_type_down"></i>
+      </a>
+    </li>
+  </ul>
+  <div class="l-page_float_right">
+    <div class="b-statistics__tags b-statistics__tags_type_header b-statistics__tags_style_big-margin">
+      <i class="b-tags__title b-tags__title_type_dark">
+        Services:
+      </i>
+      <a class="b-tags__link b-tags__link_type_link b-tags__link_size_middle b-tags__link_type_margin-large" href="/data#services">
+        <i class="b-tags__link-inner">
+          <i class="b-tags__link-text">
+            API
+            <i class="b-tags__corner"></i>
+          </i>
+        </i>
+        <i class="b-tags__link-substrate"><i class="b-tags__substrate-corner"></i></i>
+      </a>
+      <a class="b-tags__link b-tags__link_type_link b-tags__link_size_middle b-tags__link_type_margin-small" href="/data#services">
+        <i class="b-tags__link-inner">
+          <i class="b-tags__link-text">
+            Data Feed
+            <i class="b-tags__corner"></i>
+          </i>
+        </i>
+        <i class="b-tags__link-substrate"><i class="b-tags__substrate-corner"></i></i>
+      </a>
+      <a class="b-tags__link b-tags__link_type_link b-tags__link_size_middle b-tags__link_type_margin-top-large" href="/data#services">
+        <i class="b-tags__link-inner">
+          <i class="b-tags__link-text">
+            Hosted Solution
+            <i class="b-tags__corner"></i>
+          </i>
+        </i>
+        <i class="b-tags__link-substrate"><i class="b-tags__substrate-corner"></i></i>
+      </a>
+    </div>
+  </div>
+</div>
+<h2 class="b-content__title">
+
+            <span class="b-content__title-highlight">
+              UFC 214: Cormier vs. Jones 2
+            </span>
+</h2>
+
+<div class="b-fight-details">
+<div class="b-list__info-box b-list__info-box_style_large-width">
+  <ul class="b-list__box-list">
+    <li class="b-list__box-list-item">
+      <i class="b-list__box-item-title">
+        Date:
+      </i>
+      July 29, 2017
+    </li>
+    <li class="b-list__box-list-item">
+      <i class="b-list__box-item-title">
+        Location:
+      </i>
+
+      Anaheim, California, USA
+    </li>
+    <li class="b-list__box-list-item">
+      <i class="b-list__box-item-title">
+        Attendance:
+      </i>
+      16,610
+    </li>
+  </ul>
+</div>
+
+<div class="b-statistics__table-preview">
+  <i class="b-statistics__table-preview-item">
+    Click on a row below to see in-depth event stats.
+  </i>
+  <i class="b-statistics__table-preview-item">
+    Fight, Perf, Sub, and KO of the Night Bonuses:
+    <img class="b-statistics__table-status" src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/fight.png" alt="">
+    <img class="b-statistics__table-status" src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/perf.png" alt="">
+    <img class="b-statistics__table-status" src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/sub.png" alt="">
+    <img class="b-statistics__table-status" src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/ko.png" alt="">
+
+  </i>
+</div>
+
+<table class="b-fight-details__table b-fight-details__table_style_margin-top b-fight-details__table_type_event-details js-fight-table" style="display: table;">
+<thead class="b-fight-details__table-head">
+<tr class="b-fight-details__table-row">
+  <th class="b-fight-details__table-col">
+    W/L
+  </th>
+  <th class="b-fight-details__table-col l-page_align_left">
+    Fighter
+  </th>
+  <th class="b-fight-details__table-col">
+    Str
+  </th>
+  <th class="b-fight-details__table-col">
+    Td
+  </th>
+  <th class="b-fight-details__table-col">
+    Sub
+  </th>
+  <th class="b-fight-details__table-col">
+    Pass
+  </th>
+  <th class="b-fight-details__table-col l-page_align_left">
+    Weight class
+  </th>
+  <th class="b-fight-details__table-col l-page_align_left">
+    Method
+  </th>
+  <th class="b-fight-details__table-col">
+    Round
+  </th>
+  <th class="b-fight-details__table-col">
+    Time
+  </th>
+</tr>
+</thead>
+<tbody class="b-fight-details__table-body">
+
+
+
+    
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/5ab286735ccee803')" data-link="http://fightmetric.com/fight-details/5ab286735ccee803">
+    <td class="b-fight-details__table-col b-fight-details__table-col_style_align-top">
+
+      
+          
+                  <p class="b-fight-details__table-text">
+                    <a class="b-flag b-flag_style_bordered" href="http://fightmetric.com/fight-details/5ab286735ccee803"><i class="b-flag__inner"><i class="b-flag__text">nc<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+                  </p>
+
+
+                  <p class="b-fight-details__table-text">
+                    <a class="b-flag b-flag_style_bordered" href="http://fightmetric.com/fight-details/5ab286735ccee803"><i class="b-flag__inner"><i class="b-flag__text">nc<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+                  </p>
+              
+          
+      
+
+
+    </td>
+    <td style="width:100px" class="b-fight-details__table-col l-page_align_left">
+      
+          <p class="b-fight-details__table-text">
+
+            <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/d967f0128c323de6">
+              Daniel Cormier
+            </a>
+
+          </p>
+
+          <p class="b-fight-details__table-text">
+
+            <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/07f72a2a7591b409">
+              Jon Jones
+            </a>
+          </p>
+
+      
+    </td>
+    <td class="b-fight-details__table-col">
+
+      
+
+             <p class="b-fight-details__table-text">
+               
+               58
+
+          </p>
+
+          <p class="b-fight-details__table-text">
+
+            
+            95
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col l-page_align_left">
+      <p class="b-fight-details__table-text">
+        Light Heavyweight<br>
+        <img src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/belt.png" alt=""><img src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/perf.png" alt="">
+      </p>
+
+    </td>
+    <td class="b-fight-details__table-col l-page_align_left">
+      <p class="b-fight-details__table-text">
+        
+        
+
+        Overturned
+
+      </p>
+
+      <p class="b-fight-details__table-text">
+        Kick
+      </p>
+    </td>
+    <td class="b-fight-details__table-col">
+      <p class="b-fight-details__table-text">
+
+        3
+      </p>
+    </td>
+    <td class="b-fight-details__table-col">
+      <p class="b-fight-details__table-text">
+
+        3:01
+      </p>
+    </td>
+    </tr>
+
+
+    
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/30553d630491094a')" data-link="http://fightmetric.com/fight-details/30553d630491094a">
+    <td class="b-fight-details__table-col b-fight-details__table-col_style_align-top">
+
+      
+          
+              <p class="b-fight-details__table-text">
+                <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/30553d630491094a"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+              </p>
+              <br>
+
+          
+      
+
+
+    </td>
+    <td style="width:100px" class="b-fight-details__table-col l-page_align_left">
+      
+          <p class="b-fight-details__table-text">
+
+            <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/effd9de9937996f8">
+              Tyron Woodley
+            </a>
+
+          </p>
+
+          <p class="b-fight-details__table-text">
+
+            <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+              Demian Maia
+            </a>
+          </p>
+
+      
+    </td>
+    <td class="b-fight-details__table-col">
+
+      
+
+             <p class="b-fight-details__table-text">
+               
+               57
+
+          </p>
+
+          <p class="b-fight-details__table-text">
+
+            
+            28
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col l-page_align_left">
+      <p class="b-fight-details__table-text">
+        Welterweight<br>
+        <img src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/belt.png" alt="">
+      </p>
+
+    </td>
+    <td class="b-fight-details__table-col l-page_align_left">
+      <p class="b-fight-details__table-text">
+        
+        
+
+        U-DEC
+
+      </p>
+
+      <p class="b-fight-details__table-text">
+        
+      </p>
+    </td>
+    <td class="b-fight-details__table-col">
+      <p class="b-fight-details__table-text">
+
+        5
+      </p>
+    </td>
+    <td class="b-fight-details__table-col">
+      <p class="b-fight-details__table-text">
+
+        5:00
+      </p>
+    </td>
+    </tr>
+
+
+    
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/79817ab0129c5598')" data-link="http://fightmetric.com/fight-details/79817ab0129c5598">
+    <td class="b-fight-details__table-col b-fight-details__table-col_style_align-top">
+
+      
+          
+              <p class="b-fight-details__table-text">
+                <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/79817ab0129c5598"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+              </p>
+              <br>
+
+          
+      
+
+
+    </td>
+    <td style="width:100px" class="b-fight-details__table-col l-page_align_left">
+      
+          <p class="b-fight-details__table-text">
+
+            <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/634bb0de2eb043b4">
+              Cris Cyborg
+            </a>
+
+          </p>
+
+          <p class="b-fight-details__table-text">
+
+            <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/b12a1d19ee383b7c">
+              Tonya Evinger
+            </a>
+          </p>
+
+      
+    </td>
+    <td class="b-fight-details__table-col">
+
+      
+
+             <p class="b-fight-details__table-text">
+               
+               74
+
+          </p>
+
+          <p class="b-fight-details__table-text">
+
+            
+            32
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            1
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col l-page_align_left">
+      <p class="b-fight-details__table-text">
+        Women's Featherweight<br>
+        <img src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/belt.png" alt="">
+      </p>
+
+    </td>
+    <td class="b-fight-details__table-col l-page_align_left">
+      <p class="b-fight-details__table-text">
+        
+        
+
+        KO/TKO
+
+      </p>
+
+      <p class="b-fight-details__table-text">
+        Knees
+      </p>
+    </td>
+    <td class="b-fight-details__table-col">
+      <p class="b-fight-details__table-text">
+
+        3
+      </p>
+    </td>
+    <td class="b-fight-details__table-col">
+      <p class="b-fight-details__table-text">
+
+        1:56
+      </p>
+    </td>
+    </tr>
+
+
+    
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/b8c967c742d3c107')" data-link="http://fightmetric.com/fight-details/b8c967c742d3c107">
+    <td class="b-fight-details__table-col b-fight-details__table-col_style_align-top">
+
+      
+          
+              <p class="b-fight-details__table-text">
+                <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/b8c967c742d3c107"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+              </p>
+              <br>
+
+          
+      
+
+
+    </td>
+    <td style="width:100px" class="b-fight-details__table-col l-page_align_left">
+      
+          <p class="b-fight-details__table-text">
+
+            <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/f2925e6db404bf1d">
+              Robbie Lawler
+            </a>
+
+          </p>
+
+          <p class="b-fight-details__table-text">
+
+            <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/1d00756835ca67c9">
+              Donald Cerrone
+            </a>
+          </p>
+
+      
+    </td>
+    <td class="b-fight-details__table-col">
+
+      
+
+             <p class="b-fight-details__table-text">
+               
+               77
+
+          </p>
+
+          <p class="b-fight-details__table-text">
+
+            
+            82
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            1
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            2
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col l-page_align_left">
+      <p class="b-fight-details__table-text">
+        Welterweight<br>
+        
+      </p>
+
+    </td>
+    <td class="b-fight-details__table-col l-page_align_left">
+      <p class="b-fight-details__table-text">
+        
+        
+
+        U-DEC
+
+      </p>
+
+      <p class="b-fight-details__table-text">
+        
+      </p>
+    </td>
+    <td class="b-fight-details__table-col">
+      <p class="b-fight-details__table-text">
+
+        3
+      </p>
+    </td>
+    <td class="b-fight-details__table-col">
+      <p class="b-fight-details__table-text">
+
+        5:00
+      </p>
+    </td>
+    </tr>
+
+
+    
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/49694c2d00c581ed')" data-link="http://fightmetric.com/fight-details/49694c2d00c581ed">
+    <td class="b-fight-details__table-col b-fight-details__table-col_style_align-top">
+
+      
+          
+              <p class="b-fight-details__table-text">
+                <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/49694c2d00c581ed"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+              </p>
+              <br>
+
+          
+      
+
+
+    </td>
+    <td style="width:100px" class="b-fight-details__table-col l-page_align_left">
+      
+          <p class="b-fight-details__table-text">
+
+            <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/0845c81e37d3bcb3">
+              Volkan Oezdemir
+            </a>
+
+          </p>
+
+          <p class="b-fight-details__table-text">
+
+            <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/1e1dbd1cc5a7469e">
+              Jimi Manuwa
+            </a>
+          </p>
+
+      
+    </td>
+    <td class="b-fight-details__table-col">
+
+      
+
+             <p class="b-fight-details__table-text">
+               
+               12
+
+          </p>
+
+          <p class="b-fight-details__table-text">
+
+            
+            2
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col l-page_align_left">
+      <p class="b-fight-details__table-text">
+        Light Heavyweight<br>
+        <img src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/perf.png" alt="">
+      </p>
+
+    </td>
+    <td class="b-fight-details__table-col l-page_align_left">
+      <p class="b-fight-details__table-text">
+        
+        
+
+        KO/TKO
+
+      </p>
+
+      <p class="b-fight-details__table-text">
+        Punches
+      </p>
+    </td>
+    <td class="b-fight-details__table-col">
+      <p class="b-fight-details__table-text">
+
+        1
+      </p>
+    </td>
+    <td class="b-fight-details__table-col">
+      <p class="b-fight-details__table-text">
+
+        0:42
+      </p>
+    </td>
+    </tr>
+
+
+    
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/dffad417175400ba')" data-link="http://fightmetric.com/fight-details/dffad417175400ba">
+    <td class="b-fight-details__table-col b-fight-details__table-col_style_align-top">
+
+      
+          
+              <p class="b-fight-details__table-text">
+                <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/dffad417175400ba"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+              </p>
+              <br>
+
+          
+      
+
+
+    </td>
+    <td style="width:100px" class="b-fight-details__table-col l-page_align_left">
+      
+          <p class="b-fight-details__table-text">
+
+            <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/3974fa35c917af1d">
+              Ricardo Lamas
+            </a>
+
+          </p>
+
+          <p class="b-fight-details__table-text">
+
+            <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/bb1a2cdad6ff34db">
+              Jason Knight
+            </a>
+          </p>
+
+      
+    </td>
+    <td class="b-fight-details__table-col">
+
+      
+
+             <p class="b-fight-details__table-text">
+               
+               42
+
+          </p>
+
+          <p class="b-fight-details__table-text">
+
+            
+            8
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            1
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            2
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col l-page_align_left">
+      <p class="b-fight-details__table-text">
+        Featherweight<br>
+        
+      </p>
+
+    </td>
+    <td class="b-fight-details__table-col l-page_align_left">
+      <p class="b-fight-details__table-text">
+        
+        
+
+        KO/TKO
+
+      </p>
+
+      <p class="b-fight-details__table-text">
+        Punches
+      </p>
+    </td>
+    <td class="b-fight-details__table-col">
+      <p class="b-fight-details__table-text">
+
+        1
+      </p>
+    </td>
+    <td class="b-fight-details__table-col">
+      <p class="b-fight-details__table-text">
+
+        4:34
+      </p>
+    </td>
+    </tr>
+
+
+    
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/ac9e19a4075f6557')" data-link="http://fightmetric.com/fight-details/ac9e19a4075f6557">
+    <td class="b-fight-details__table-col b-fight-details__table-col_style_align-top">
+
+      
+          
+              <p class="b-fight-details__table-text">
+                <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/ac9e19a4075f6557"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+              </p>
+              <br>
+
+          
+      
+
+
+    </td>
+    <td style="width:100px" class="b-fight-details__table-col l-page_align_left">
+      
+          <p class="b-fight-details__table-text">
+
+            <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/cb696ebfb6598724">
+              Aljamain Sterling
+            </a>
+
+          </p>
+
+          <p class="b-fight-details__table-text">
+
+            <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/2c99576fefe53c7c">
+              Renan Barao
+            </a>
+          </p>
+
+      
+    </td>
+    <td class="b-fight-details__table-col">
+
+      
+
+             <p class="b-fight-details__table-text">
+               
+               71
+
+          </p>
+
+          <p class="b-fight-details__table-text">
+
+            
+            19
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            1
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            2
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            1
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            3
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col l-page_align_left">
+      <p class="b-fight-details__table-text">
+        Catch Weight<br>
+        
+      </p>
+
+    </td>
+    <td class="b-fight-details__table-col l-page_align_left">
+      <p class="b-fight-details__table-text">
+        
+        
+
+        U-DEC
+
+      </p>
+
+      <p class="b-fight-details__table-text">
+        
+      </p>
+    </td>
+    <td class="b-fight-details__table-col">
+      <p class="b-fight-details__table-text">
+
+        3
+      </p>
+    </td>
+    <td class="b-fight-details__table-col">
+      <p class="b-fight-details__table-text">
+
+        5:00
+      </p>
+    </td>
+    </tr>
+
+
+    
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/4924d7a980f4cde2')" data-link="http://fightmetric.com/fight-details/4924d7a980f4cde2">
+    <td class="b-fight-details__table-col b-fight-details__table-col_style_align-top">
+
+      
+          
+              <p class="b-fight-details__table-text">
+                <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/4924d7a980f4cde2"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+              </p>
+              <br>
+
+          
+      
+
+
+    </td>
+    <td style="width:100px" class="b-fight-details__table-col l-page_align_left">
+      
+          <p class="b-fight-details__table-text">
+
+            <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/def8166ff24bd237">
+              Brian Ortega
+            </a>
+
+          </p>
+
+          <p class="b-fight-details__table-text">
+
+            <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/b6452706b373eea1">
+              Renato Moicano
+            </a>
+          </p>
+
+      
+    </td>
+    <td class="b-fight-details__table-col">
+
+      
+
+             <p class="b-fight-details__table-text">
+               
+               65
+
+          </p>
+
+          <p class="b-fight-details__table-text">
+
+            
+            109
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            2
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            1
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col l-page_align_left">
+      <p class="b-fight-details__table-text">
+        Featherweight<br>
+        <img src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/fight.png" alt="">
+      </p>
+
+    </td>
+    <td class="b-fight-details__table-col l-page_align_left">
+      <p class="b-fight-details__table-text">
+        
+        
+
+        SUB
+
+      </p>
+
+      <p class="b-fight-details__table-text">
+        Guillotine Choke
+      </p>
+    </td>
+    <td class="b-fight-details__table-col">
+      <p class="b-fight-details__table-text">
+
+        3
+      </p>
+    </td>
+    <td class="b-fight-details__table-col">
+      <p class="b-fight-details__table-text">
+
+        2:59
+      </p>
+    </td>
+    </tr>
+
+
+    
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/3d95b4f94ccffa96')" data-link="http://fightmetric.com/fight-details/3d95b4f94ccffa96">
+    <td class="b-fight-details__table-col b-fight-details__table-col_style_align-top">
+
+      
+          
+              <p class="b-fight-details__table-text">
+                <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/3d95b4f94ccffa96"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+              </p>
+              <br>
+
+          
+      
+
+
+    </td>
+    <td style="width:100px" class="b-fight-details__table-col l-page_align_left">
+      
+          <p class="b-fight-details__table-text">
+
+            <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/751de04455cfaac0">
+              Calvin Kattar
+            </a>
+
+          </p>
+
+          <p class="b-fight-details__table-text">
+
+            <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/8fd808923cffff82">
+              Andre Fili
+            </a>
+          </p>
+
+      
+    </td>
+    <td class="b-fight-details__table-col">
+
+      
+
+             <p class="b-fight-details__table-text">
+               
+               75
+
+          </p>
+
+          <p class="b-fight-details__table-text">
+
+            
+            73
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            2
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col l-page_align_left">
+      <p class="b-fight-details__table-text">
+        Featherweight<br>
+        
+      </p>
+
+    </td>
+    <td class="b-fight-details__table-col l-page_align_left">
+      <p class="b-fight-details__table-text">
+        
+        
+
+        U-DEC
+
+      </p>
+
+      <p class="b-fight-details__table-text">
+        
+      </p>
+    </td>
+    <td class="b-fight-details__table-col">
+      <p class="b-fight-details__table-text">
+
+        3
+      </p>
+    </td>
+    <td class="b-fight-details__table-col">
+      <p class="b-fight-details__table-text">
+
+        5:00
+      </p>
+    </td>
+    </tr>
+
+
+    
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/e80a8338d86e730b')" data-link="http://fightmetric.com/fight-details/e80a8338d86e730b">
+    <td class="b-fight-details__table-col b-fight-details__table-col_style_align-top">
+
+      
+          
+              <p class="b-fight-details__table-text">
+                <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/e80a8338d86e730b"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+              </p>
+              <br>
+
+          
+      
+
+
+    </td>
+    <td style="width:100px" class="b-fight-details__table-col l-page_align_left">
+      
+          <p class="b-fight-details__table-text">
+
+            <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/e76d9f656ceb82ab">
+              Alexandra Albu
+            </a>
+
+          </p>
+
+          <p class="b-fight-details__table-text">
+
+            <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/05b43e0ead3df345">
+              Kailin Curran
+            </a>
+          </p>
+
+      
+    </td>
+    <td class="b-fight-details__table-col">
+
+      
+
+             <p class="b-fight-details__table-text">
+               
+               82
+
+          </p>
+
+          <p class="b-fight-details__table-text">
+
+            
+            86
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            5
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            1
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            2
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            2
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col l-page_align_left">
+      <p class="b-fight-details__table-text">
+        Women's Strawweight<br>
+        
+      </p>
+
+    </td>
+    <td class="b-fight-details__table-col l-page_align_left">
+      <p class="b-fight-details__table-text">
+        
+        
+
+        U-DEC
+
+      </p>
+
+      <p class="b-fight-details__table-text">
+        
+      </p>
+    </td>
+    <td class="b-fight-details__table-col">
+      <p class="b-fight-details__table-text">
+
+        3
+      </p>
+    </td>
+    <td class="b-fight-details__table-col">
+      <p class="b-fight-details__table-text">
+
+        5:00
+      </p>
+    </td>
+    </tr>
+
+
+    
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/4f4806952ba2a72c')" data-link="http://fightmetric.com/fight-details/4f4806952ba2a72c">
+    <td class="b-fight-details__table-col b-fight-details__table-col_style_align-top">
+
+      
+          
+              <p class="b-fight-details__table-text">
+                <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/4f4806952ba2a72c"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+              </p>
+              <br>
+
+          
+      
+
+
+    </td>
+    <td style="width:100px" class="b-fight-details__table-col l-page_align_left">
+      
+          <p class="b-fight-details__table-text">
+
+            <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/81d9df19e255b8b6">
+              Jarred Brooks
+            </a>
+
+          </p>
+
+          <p class="b-fight-details__table-text">
+
+            <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/a0c64f272b65d441">
+              Eric Shelton
+            </a>
+          </p>
+
+      
+    </td>
+    <td class="b-fight-details__table-col">
+
+      
+
+             <p class="b-fight-details__table-text">
+               
+               27
+
+          </p>
+
+          <p class="b-fight-details__table-text">
+
+            
+            31
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            5
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            1
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            1
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            1
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            1
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col l-page_align_left">
+      <p class="b-fight-details__table-text">
+        Flyweight<br>
+        
+      </p>
+
+    </td>
+    <td class="b-fight-details__table-col l-page_align_left">
+      <p class="b-fight-details__table-text">
+        
+        
+
+        S-DEC
+
+      </p>
+
+      <p class="b-fight-details__table-text">
+        
+      </p>
+    </td>
+    <td class="b-fight-details__table-col">
+      <p class="b-fight-details__table-text">
+
+        3
+      </p>
+    </td>
+    <td class="b-fight-details__table-col">
+      <p class="b-fight-details__table-text">
+
+        5:00
+      </p>
+    </td>
+    </tr>
+
+
+    
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/3636e085c098dbda')" data-link="http://fightmetric.com/fight-details/3636e085c098dbda">
+    <td class="b-fight-details__table-col b-fight-details__table-col_style_align-top">
+
+      
+          
+              <p class="b-fight-details__table-text">
+                <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/3636e085c098dbda"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+              </p>
+              <br>
+
+          
+      
+
+
+    </td>
+    <td style="width:100px" class="b-fight-details__table-col l-page_align_left">
+      
+          <p class="b-fight-details__table-text">
+
+            <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/519e4fe37ce9ff75">
+              Drew Dober
+            </a>
+
+          </p>
+
+          <p class="b-fight-details__table-text">
+
+            <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/6da99156486ed6c2">
+              Joshua Burkman
+            </a>
+          </p>
+
+      
+    </td>
+    <td class="b-fight-details__table-col">
+
+      
+
+             <p class="b-fight-details__table-text">
+               
+               15
+
+          </p>
+
+          <p class="b-fight-details__table-text">
+
+            
+            11
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col">
+      
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+
+          <p class="b-fight-details__table-text">
+            
+            0
+          </p>
+      
+    </td>
+    <td class="b-fight-details__table-col l-page_align_left">
+      <p class="b-fight-details__table-text">
+        Lightweight<br>
+        
+      </p>
+
+    </td>
+    <td class="b-fight-details__table-col l-page_align_left">
+      <p class="b-fight-details__table-text">
+        
+        
+
+        KO/TKO
+
+      </p>
+
+      <p class="b-fight-details__table-text">
+        Punch
+      </p>
+    </td>
+    <td class="b-fight-details__table-col">
+      <p class="b-fight-details__table-text">
+
+        1
+      </p>
+    </td>
+    <td class="b-fight-details__table-col">
+      <p class="b-fight-details__table-text">
+
+        3:04
+      </p>
+    </td>
+    </tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+    <footer class="b-foot">
+  <div class="b-twitter__bar">
+    <div class="l-page__container">
+      <i class="b-twitter__logo"></i>
+
+      <div class="b-twitter__entries js-tweets"><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/HugoStiglitz_88" target="_blank">@HugoStiglitz_88</a> <a href="http://twitter.com/KlaudeZ15" target="_blank">@KlaudeZ15</a> <a href="http://twitter.com/chrisruddy123" target="_blank">@chrisruddy123</a> <a href="http://twitter.com/M7md_Ayoob" target="_blank">@M7md_Ayoob</a> <a href="http://twitter.com/bisping" target="_blank">@bisping</a> <a href="http://twitter.com/BYMPod" target="_blank">@BYMPod</a> <a href="http://twitter.com/luisjgomez" target="_blank">@luisjgomez</a> <a href='https://t.co/CSIxnTHmFh' target="_blank" class=''>https://t.co/CSIxnTHmFh</a> ...yes he did.</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 1:55 PM Sep 18</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/albertolati" target="_blank">@albertolati</a> revisa Fightmetric, ve la pelea de nuevo. Estás muy equivocado, nadie le pasó por encima a nadie, fue pareja y la perdió Canelo</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 5:33 AM Sep 17</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/TJ_Scott_MMA" target="_blank">@TJ_Scott_MMA</a> <a href="http://twitter.com/flipgee_" target="_blank">@flipgee_</a> <a href="http://twitter.com/FightMetric" target="_blank">@FightMetric</a> Under the FightMetric definition jabs count as significant strikes</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 3:27 AM Sep 17</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/ZackFSmith" target="_blank">@ZackFSmith</a> Man I thought it was at least 4 in the 1st. 🤷🏻‍♂️ Lets see FightMetric mess this one up.</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 3:21 AM Sep 17</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text">That's a KD right? <a href="http://twitter.com/FightMetric" target="_blank">@FightMetric</a> <a href="http://twitter.com/FantasyAlarm" target="_blank">@FantasyAlarm</a> <a href="http://twitter.com/BrettAppley" target="_blank">@BrettAppley</a></p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 3:13 AM Sep 17</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/StrikeScoreMMA" target="_blank">@StrikeScoreMMA</a> <a href="http://twitter.com/flipgee_" target="_blank">@flipgee_</a> <a href="http://twitter.com/FightMetric" target="_blank">@FightMetric</a> Correct. I'm a licensed <a href="http://twitter.com/search?q=%23MMA" target="_blank">#MMA</a> judge &amp; I can tell u that I 💯% count stiff jabs… <a href='https://t.co/g0wbM70tSw' target="_blank" class=''>https://t.co/g0wbM70tSw</a></p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 3:02 AM Sep 17</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/flipgee_" target="_blank">@flipgee_</a> <a href="http://twitter.com/TJ_Scott_MMA" target="_blank">@TJ_Scott_MMA</a> <a href="http://twitter.com/FightMetric" target="_blank">@FightMetric</a> Jabs are significant. Ledet just missed the majority of his strikes</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 2:59 AM Sep 17</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/TJ_Scott_MMA" target="_blank">@TJ_Scott_MMA</a> <a href="http://twitter.com/FightMetric" target="_blank">@FightMetric</a> Fight metric I think, the commentators have commentated on it about wondering why they d… <a href='https://t.co/mYylDhqqGC' target="_blank" class=''>https://t.co/mYylDhqqGC</a></p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 2:40 AM Sep 17</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/flipgee_" target="_blank">@flipgee_</a> <a href="http://twitter.com/FightMetric" target="_blank">@FightMetric</a> From <a href="http://twitter.com/FightMetric" target="_blank">@FightMetric</a>'s perspective, or MMA in general?</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 2:39 AM Sep 17</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/TJ_Scott_MMA" target="_blank">@TJ_Scott_MMA</a> <a href="http://twitter.com/FightMetric" target="_blank">@FightMetric</a> Jabs don't "count" as sig strikes</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 2:33 AM Sep 17</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text">Someone please explain to me how <a href="http://twitter.com/FightMetric" target="_blank">@FightMetric</a> has Zu with 35 sig strikes and Ledet has 34? No way. Not a chance in hell.</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 2:29 AM Sep 17</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/theDFSniper" target="_blank">@theDFSniper</a> <a href="http://twitter.com/LeRoiStephonDFS" target="_blank">@LeRoiStephonDFS</a> <a href="http://twitter.com/DK_Assist" target="_blank">@DK_Assist</a> He grabbed him as he was falling and went down with him. Fightmetric is a… <a href='https://t.co/JttDjnb3bG' target="_blank" class=''>https://t.co/JttDjnb3bG</a></p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 1:26 AM Sep 17</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/LeRoiStephonDFS" target="_blank">@LeRoiStephonDFS</a> <a href="http://twitter.com/DK_Assist" target="_blank">@DK_Assist</a> See my other tweet, I had equal as Hamilton. It's still frustrating FightMetric fucks something up every card.</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 1:14 AM Sep 17</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/DK_Assist" target="_blank">@DK_Assist</a> <a href="http://twitter.com/BrettAppley" target="_blank">@BrettAppley</a> FightMetric is a flaming pile of garbage. Enjoy your day, <a href="http://twitter.com/DK_Assist" target="_blank">@DK_Assist</a></p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 6:44 PM Sep 14</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/DK_Assist" target="_blank">@DK_Assist</a> <a href="http://twitter.com/BrettAppley" target="_blank">@BrettAppley</a> So yeah it's fightmetric we're screwed</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 6:15 PM Sep 14</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/DK_Assist" target="_blank">@DK_Assist</a> who needs to announce it to make it official? Fightmetric?</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 4:43 PM Sep 14</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/ufc" target="_blank">@ufc</a> <a href="http://twitter.com/arielhelwani" target="_blank">@arielhelwani</a> <a href="http://twitter.com/BulletValentina" target="_blank">@BulletValentina</a> Fight metric also has nunes winning. <a href='https://t.co/5CMQWNQ5d3' target="_blank" class=''>https://t.co/5CMQWNQ5d3</a></p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 8:02 PM Sep 13</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/StangXx" target="_blank">@StangXx</a> <a href="http://twitter.com/bokamotoESPN" target="_blank">@bokamotoESPN</a> Fightmetric made the corrections.  Both sites are the same now w/Nunes advantage in strikes.… <a href='https://t.co/kIAYk5oG54' target="_blank" class=''>https://t.co/kIAYk5oG54</a></p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 1:38 AM Sep 12</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/una80000" target="_blank">@una80000</a> FightmetricのスタッツはUFCの中だけのスタッツですからね</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric">12:33 AM Sep 12</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text">RT <a href="http://twitter.com/Lowkingpl" target="_blank">@Lowkingpl</a>: <a href="http://twitter.com/SandhuMMA" target="_blank">@SandhuMMA</a> According to FightMetric he was.</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 9:48 PM Sep 11</a></p></div></div>
+
+      <div class="b-twitter__nav">
+        <a class="b-twitter__nav-link b-twitter__nav-link_type_prev js-tweets-prev"></a>
+        <a class="b-twitter__nav-link b-twitter__nav-link_type_forward js-tweets-forward"></a>
+      </div>
+    </div>
+  </div>
+  <div class="b-foot__inner">
+    <div class="l-page__container clearfix">
+      <a class="b-foot__logo" href="/">
+      <img src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/foot-logo.png" alt="">
+      </a>
+      <div class="b-foot__right">
+        <div class="clearfix">
+          <div class="b-foot__list-inner">
+            <h4 class="b-foot__list-title">
+              Navigation
+            </h4>
+            <ul class="b-foot__list">
+              <li class="b-foot__item">
+                <a class="b-foot__link" href="/statistics">
+                  Stats
+                </a>
+              </li>
+              <li class="b-foot__item">
+                <a class="b-foot__link" href="/data">
+                  Feeds
+                </a>
+              </li>
+              <li class="b-foot__item">
+                <a class="b-foot__link" href="/dev">
+                  Dev
+                </a>
+              </li>
+              <li class="b-foot__item">
+                <a class="b-foot__link" href="/company">
+                  Company
+                </a>
+              </li>
+              <li class="b-foot__item">
+                <a class="b-foot__link" href="/contact-us">
+                  Contact
+                </a>
+              </li>
+              <li class="b-foot__item">
+                <a class="b-foot__link" href="http://fmproduction.tv" target="_blank">
+                  FMProduction.TV
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="b-foot__list-inner">
+            <h4 class="b-foot__list-title">
+              Stats &amp; Data
+            </h4>
+            <ul class="b-foot__list">
+              <li class="b-foot__item">
+                <a class="b-foot__link" href="/statistics">
+                  Events &amp; Fights
+                </a>
+              </li>
+              <li class="b-foot__item">
+                <a class="b-foot__link" href="/statistics/fighters">
+                  Fighters
+                </a>
+              </li>
+              <li class="b-foot__item">
+                <a class="b-foot__link" href="/fighter-stats">
+                  Stat Leaders
+                </a>
+              </li>
+              <li class="b-foot__item">
+                <a class="b-foot__link" href="/rankings">
+                  Rankings
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="b-foot__list-inner">
+            <h4 class="b-foot__list-title">
+              Social
+            </h4>
+            <div class="b-socials clearfix">
+              <a class="b-socials__link b-socials__link_icon_tw" target="_blank" href="http://www.twitter.com/fightmetric">
+                <i class="b-socials__icon"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="b-foot__copy-inner">
+          &copy; FightMetric LLC. All Rights Reserved |
+          <a class="b-foot__copy-link" href="/terms">Terms of Use</a> |
+          <a class="b-foot__copy-link" href="/privacy">Privacy Policy</a>
+        </div>
+        <div class="b-foot__banners">
+          <img src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/official-provider.png" class="b-foot__banner" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+<script type="text/javascript" src="/js/vendor/jquery.validate.min.js"></script>
+<script src="/js/plugins.js"></script>
+<script src="/js/main.js?ver=74834"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(function () {
+            $("#dialog").dialog({
+
+                autoOpen: false,
+                modal: true,
+                show: {
+                    effect: "blind",
+                    duration: 1000
+                },
+                hide: {
+                    effect: "fold",
+                    duration: 1000
+                }
+
+            });
+        });
+    }
+
+    );
+    $("#opener").click(function () {
+        $("#dialog").dialog("open");
+    });
+    $("#opener").click(function () {
+        var state = true;
+        if (state) {
+            $("#dialog").animate({
+                backgroundColor: "white",
+                color: "black"
+
+            }, 1000);
+        }
+    });
+
+</script>
+
+<script type="text/javascript">
+
+ /*window.onload = function (){
+     // location.pathname.split( '/' )
+     theUrl = window.location.host;
+
+
+     if(theUrl === 'hosteddb.fightmetric.com'){
+         window.location.replace("http://www.fightmetric.com/statistics/events/upcoming");
+     }
+
+     //alert(theUrl);
+  }*/
+  //window.onpaint = handleHosted;
+</script>
+</body>
+</html>

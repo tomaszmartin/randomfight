@@ -1,0 +1,3336 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js ie8 lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"5aae39b65b","applicationID":"6281922","transactionName":"JgpaTEZZVF5UQ0lmXwsEQEpVGWtbX1ASR1dfX3VIRFpRUVBFD1pYSiJxbBRQUVVZRQNHHlpfaBVIEwppdVU7HFIAEVVRWEUXGmpvSQoVOE4d","queueTime":0,"applicationTime":489,"ttGuid":"","agentToken":null,"agent":""}</script>
+<script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o||n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({1:[function(e,n,t){function r(){}function o(e,n,t){return function(){return i(e,[c.now()].concat(u(arguments)),n?null:this,t),n?void 0:this}}var i=e("handle"),a=e(2),u=e(3),f=e("ee").get("tracer"),c=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,n){s[n]=o(d+n,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,o="function"==typeof n;return i(l+"tracer",[c.now(),e,t],r),function(){if(f.emit((o?"":"no-")+"fn-start",[c.now(),r,o],t),o)try{return n.apply(this,arguments)}finally{f.emit("fn-end",[c.now()],t)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=o(l+n)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,c.now()])}},{}],2:[function(e,n,t){function r(e,n){var t=[],r="",i=0;for(r in e)o.call(e,r)&&(t[i]=n(r,e[r]),i+=1);return t}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],3:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(o<0?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=r},{}],4:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function o(e){function n(e){return e&&e instanceof r?e:e?f(e,u,i):i()}function t(t,r,o,i){if(!d.aborted||i){e&&e(t,r,o);for(var a=n(o),u=m(t),f=u.length,c=0;c<f;c++)u[c].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function l(e,n){v[e]=m(e).concat(n)}function m(e){return v[e]||[]}function w(e){return p[e]=p[e]||o(t)}function g(e,n){c(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var v={},y={},b={on:l,emit:t,get:w,listeners:m,context:n,buffer:g,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",f=e("gos"),c=e(2),s={},p={},d=n.exports=o();d.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(o.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){o.buffer([e],r),o.emit(e,n,t)}var o=e("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!x++){var e=h.info=NREUM.info,n=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();c(y,function(n,t){e[n]||(e[n]=t)}),f("mark",["onload",a()+h.offset],null,"api");var t=d.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function o(){"complete"===d.readyState&&i()}function i(){f("mark",["domContent",a()+h.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-h.offset}var u=(new Date).getTime(),f=e("handle"),c=e(2),s=e("ee"),p=window,d=p.document,l="addEventListener",m="attachEvent",w=p.XMLHttpRequest,g=w&&w.prototype;NREUM.o={ST:setTimeout,SI:p.setImmediate,CT:clearTimeout,XHR:w,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1044.min.js"},b=w&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),h=n.exports={offset:u,now:a,origin:v,features:{},xhrWrappable:b};e(1),d[l]?(d[l]("DOMContentLoaded",i,!1),p[l]("load",r,!1)):(d[m]("onreadystatechange",o),p[m]("onload",r)),f("mark",["firstbyte",u],null,"api");var x=0,E=e(4)},{}]},{},["loader"]);</script>
+  <title>
+    FightMetric LLC :.: The World&#39;s First Comprehensive MMA Statistics Provider
+  </title>
+  <meta name="description" content="">
+  <meta name="viewport" content="">
+  <link rel="stylesheet" href="/blocks/main.css?ver=74917">
+  <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-2855164-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</head>
+<body class="b-page" data-link="home">
+    <header class="b-head">
+      <div class="b-head__nav-bar">
+  <div class="l-page__container">
+    <a class="b-head__logo" href="/">
+        <img src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/logo.png"
+             alt="FightMetric LLC :.: The World&#39;s First Comprehensive MMA Statistics Provider">
+    </a>
+    <menu class="b-head__menu">
+      
+          <li class="b-head__item">
+            <a class="b-head__menu-link" href="/statistics">
+              Stats
+            </a>
+          </li>
+      
+      
+          <li class="b-head__item">
+            <a class="b-head__menu-link" href="/data">
+              Feeds
+            </a>
+          </li>
+      
+      
+          <li class="b-head__item">
+            <a class="b-head__menu-link" href="/dev">
+              Dev
+            </a>
+          </li>
+      
+      
+          <li class="b-head__item">
+            <a class="b-head__menu-link" href="/company">
+              Company
+            </a>
+          </li>
+      
+      
+          <li class="b-head__item">
+            <a class="b-head__menu-link" href="/contact-us">
+              Contact Us
+            </a>
+          </li>
+            
+      <li class="b-head__item">
+        <a href="http://fmproduction.tv" class="b-head__menu-link" href="#" target="_blank">
+          Broadcast + Prod. <img src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/up_right_arrow.png">
+        </a>
+      </li>
+    </menu>
+  </div>
+</div>
+    <div class="b-head__sub-nav">
+      <div class="l-page__container">
+        
+      </div>
+    </div>
+
+    </header>
+    <section class="b-statistics__section">
+<script type="text/javascript">
+    function doNav(url) {
+        document.location.href = url;
+
+    }
+</script>
+<div class="l-page__container">
+<div class="b-statistics__header clearfix">
+  <ul class="b-statistics__tabs">
+    <li class="b-statistics__tabs-item" data-tab="2">
+      <a class="b-statistics__tabs-link" href="http://fightmetric.com/statistics/events/completed">
+        Events &amp; fights
+        <i class="b-statistics__tabs-corner b-statistics__tabs-corner_type_down"></i>
+      </a>
+    </li>
+    <li class="b-statistics__tabs-item b-statistics__tabs-item_state_current" data-tab="1">
+      <a class="b-statistics__tabs-link  " href="http://fightmetric.com/statistics/fighters">
+        Fighters
+        <i class="b-statistics__tabs-corner b-statistics__tabs-corner_type_down"></i>
+      </a>
+    </li>
+  </ul>
+  <div class="l-page_float_right">
+    <div class="b-statistics__tags b-statistics__tags_type_header b-statistics__tags_style_small-margin">
+      <i class="b-tags__title b-tags__title_type_dark">
+        Services:
+      </i>
+      <a class="b-tags__link b-tags__link_type_link b-tags__link_size_middle b-tags__link_type_margin-large" href="/data#services">
+        <i class="b-tags__link-inner">
+          <i class="b-tags__link-text">
+            API
+            <i class="b-tags__corner"></i>
+          </i>
+        </i>
+        <i class="b-tags__link-substrate"><i class="b-tags__substrate-corner"></i></i>
+      </a>
+      <a class="b-tags__link b-tags__link_type_link b-tags__link_size_middle b-tags__link_type_margin-small" href="/data#services">
+        <i class="b-tags__link-inner">
+          <i class="b-tags__link-text">
+            Data Feed
+            <i class="b-tags__corner"></i>
+          </i>
+        </i>
+        <i class="b-tags__link-substrate"><i class="b-tags__substrate-corner"></i></i>
+      </a>
+      <a class="b-tags__link b-tags__link_type_link b-tags__link_size_middle b-tags__link_type_margin-top-large" href="/data#services">
+        <i class="b-tags__link-inner">
+          <i class="b-tags__link-text">
+            Hosted Solution
+            <i class="b-tags__corner"></i>
+          </i>
+        </i>
+        <i class="b-tags__link-substrate"><i class="b-tags__substrate-corner"></i></i>
+      </a>
+    </div>
+  </div>
+</div>
+<h2 class="b-content__title">
+
+
+            <span class="b-content__title-highlight">
+                Demian Maia
+
+            </span>
+
+            <span class="b-content__title-record">
+                Record: 25-7-0
+            </span>
+
+</h2>
+
+<p class="b-content__Nickname">
+  
+</p>
+
+<div class="b-fight-details b-fight-details_margin-top">
+<div class="b-list__info-box b-list__info-box_style_small-width js-guide">
+  <ul class="b-list__box-list">
+    <li class="b-list__box-list-item b-list__box-list-item_type_block">
+      <i class="b-list__box-item-title b-list__box-item-title_type_width">
+        Height:
+      </i>
+      6' 1"
+    </li>
+    <li class="b-list__box-list-item b-list__box-list-item_type_block">
+      <i class="b-list__box-item-title b-list__box-item-title_type_width">
+        Weight:
+      </i>
+      170 lbs.
+    </li>
+    <li class="b-list__box-list-item b-list__box-list-item_type_block">
+      <i class="b-list__box-item-title b-list__box-item-title_type_width">
+        Reach:
+      </i>
+      72"
+    </li>
+    <li class="b-list__box-list-item  b-list__box-list-item_type_block">
+      <i class="b-list__box-item-title b-list__box-item-title_type_width">
+        STANCE:
+      </i>
+      Southpaw
+    </li>
+    <li class="b-list__box-list-item b-list__box-list-item_type_block">
+      <i class="b-list__box-item-title b-list__box-item-title_type_width">
+        DOB:
+      </i>
+      
+        Nov 06, 1977
+      
+    </li>
+  </ul>
+</div>
+<div class="b-list__info-box b-list__info-box_style_middle-width js-guide clearfix">
+
+  <div class="b-list__info-box-left clearfix">
+    <div class="b-list__info-box-left">
+      <i class="b-list__box-item-title">
+        Career statistics:
+      </i>
+      <ul class="b-list__box-list b-list__box-list_margin-top">
+        <li class="b-list__box-list-item b-list__box-list-item_type_block">
+          <i class="b-list__box-item-title b-list__box-item-title_font_lowercase b-list__box-item-title_type_width">
+            SLpM:
+          </i>
+
+          1.75
+
+        </li>
+        <li class="b-list__box-list-item b-list__box-list-item_type_block">
+          <i class="b-list__box-item-title b-list__box-item-title_font_lowercase b-list__box-item-title_type_width">
+            Str. Acc.:
+          </i>
+          44%
+        </li>
+        <li class="b-list__box-list-item b-list__box-list-item_type_block">
+          <i class="b-list__box-item-title b-list__box-item-title_font_lowercase b-list__box-item-title_type_width">
+            SApM:
+          </i>
+          1.71
+        </li>
+        <li class="b-list__box-list-item  b-list__box-list-item_type_block">
+          <i class="b-list__box-item-title b-list__box-item-title_font_lowercase b-list__box-item-title_type_width">
+            Str. Def:
+          </i>
+          61%
+        </li>
+      </ul>
+    </div>
+
+    <div class="b-list__info-box-right b-list__info-box_style-margin-right">
+      <ul class="b-list__box-list b-list__box-list_margin-top">
+        <li class="b-list__box-list-item b-list__box-list-item_type_block">
+          <i class="b-list__box-item-title b-list__box-item-title_type_width">
+
+          </i>
+        </li>
+        <li class="b-list__box-list-item b-list__box-list-item_type_block">
+          <i class="b-list__box-item-title b-list__box-item-title_font_lowercase b-list__box-item-title_type_width">
+            TD Avg.:
+          </i>
+          2.81
+        </li>
+        <li class="b-list__box-list-item b-list__box-list-item_type_block">
+          <i class="b-list__box-item-title b-list__box-item-title_font_lowercase b-list__box-item-title_type_width">
+            TD Acc.:
+          </i>
+          28%
+        </li>
+        <li class="b-list__box-list-item b-list__box-list-item_type_block">
+          <i class="b-list__box-item-title b-list__box-item-title_font_lowercase b-list__box-item-title_type_width">
+            TD Def.:
+          </i>
+          65%
+        </li>
+        <li class="b-list__box-list-item  b-list__box-list-item_type_block">
+          <i class="b-list__box-item-title b-list__box-item-title_font_lowercase b-list__box-item-title_type_width">
+            Sub. Avg.:
+          </i>
+          1.1
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="b-list__info-box-right b-list__info-box_style_border-left b-list__info-box-right_style_middle-width">
+    <p class="b-list__box-content">
+      <i class="b-list__box-content_style_strong">
+        SLpM -
+      </i>
+      Significant Strikes Landed per Minute
+    </p>
+
+    <p class="b-list__box-content">
+      <i class="b-list__box-content_style_strong">
+        Str. Acc. -
+      </i>
+      Significant Striking Accuracy
+    </p>
+
+    <p class="b-list__box-content">
+      <i class="b-list__box-content_style_strong">
+        SApM -
+      </i>
+      Significant Strikes Absorbed per Minute
+    </p>
+
+    <p class="b-list__box-content">
+      <i class="b-list__box-content_style_strong">
+        Str. Def. -
+      </i>
+      Significant Strike Defence (the % of opponents strikes that did not land)
+    </p>
+
+    <p class="b-list__box-content">
+      <i class="b-list__box-content_style_strong">
+        TD Avg. -
+      </i>
+      Average Takedowns Landed per 15 minutes
+    </p>
+
+    <p class="b-list__box-content">
+      <i class="b-list__box-content_style_strong">
+        TD Acc. -
+      </i>
+      Takedown Accuracy
+    </p>
+
+    <p class="b-list__box-content">
+      <i class="b-list__box-content_style_strong">
+        TD Def. -
+      </i>
+      Takedown Defense (the % of opponents TD attempts that did not land)
+    </p>
+
+    <p class="b-list__box-content">
+      <i class="b-list__box-content_style_strong">
+        Sub. Avg. -
+      </i>
+      Average Submissions Attempted per 15 minutes
+    </p>
+    <i class="b-list__box-line"></i>
+  </div>
+</div>
+
+<div class="b-statistics__table-preview">
+  <i class="b-statistics__table-preview-item">
+    Click on row to see detailed stats
+  </i>
+</div>
+
+<table class="b-fight-details__table b-fight-details__table_style_margin-top b-fight-details__table_type_event-details js-fight-table" style="display: table;">
+<thead class="b-fight-details__table-head">
+<tr class="b-fight-details__table-row">
+  <th class="b-fight-details__table-col">
+    W/L
+  </th>
+  <th class="b-fight-details__table-col l-page_align_left">
+    Fighter
+  </th>
+  <th class="b-fight-details__table-col">
+    Str
+  </th>
+  <th class="b-fight-details__table-col">
+    Td
+  </th>
+  <th class="b-fight-details__table-col">
+    Sub
+  </th>
+  <th class="b-fight-details__table-col">
+    Pass
+  </th>
+  <th class="b-fight-details__table-col l-page_align_left">
+    Event
+  </th>
+  <th class="b-fight-details__table-col l-page_align_left">
+    Method
+  </th>
+  <th class="b-fight-details__table-col">
+    Round
+  </th>
+  <th class="b-fight-details__table-col">
+    Time
+  </th>
+</tr>
+</thead>
+<tbody class="b-fight-details__table-body">
+<tr class="b-statistics__table-row">
+  <td class="b-statistics__table-col_type_clear"></td>
+</tr>
+    <tr class="b-fight-details__table-row b-fight-details__table-row_type_first">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_red" href="http://fightmetric.com/fight-details/7a5baef71925258c"><i class="b-flag__inner"><i class="b-flag__text">next<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_white" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_white" href="http://fightmetric.com/fighter-details/dc9572dd6ec74859">
+            Colby Covington
+          </a>
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+
+      <td class="b-fight-details__table-col" colspan="2">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_white" href="http://fightmetric.com/fight-details/7a5baef71925258c">Matchup<br/>
+            Preview</a>
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_white" href="http://fightmetric.com/event-details/a7724f51e32e763e">
+            UFC Fight Night: Machida vs. Brunson
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          Oct. 28, 2017
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+
+      </td>
+      <td class="b-fight-details__table-col">
+
+      </td>
+      <td class="b-fight-details__table-col">
+
+      </td>
+    </tr>
+
+
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/30553d630491094a')" data-link="http://fightmetric.com/fight-details/30553d630491094a">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_bordered" href="http://fightmetric.com/fight-details/30553d630491094a"><i class="b-flag__inner"><i class="b-flag__text">loss<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/effd9de9937996f8">
+            Tyron Woodley
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              28
+            </p>
+
+            <p class="b-fight-details__table-text">
+              57
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/ff9578cdbfabd323">
+            UFC 214: Cormier vs. Jones 2
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+              <img src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/belt.png" alt="">
+          
+          Jul. 29, 2017
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          U-DEC
+        
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          5
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          5:00
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/6e3139f066149a81')" data-link="http://fightmetric.com/fight-details/6e3139f066149a81">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/6e3139f066149a81"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/47b9e0e7703a4868">
+            Jorge Masvidal
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              23
+            </p>
+
+            <p class="b-fight-details__table-text">
+              39
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              4
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              3
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/5df10509264586e5">
+            UFC 211: Miocic vs. Dos Santos
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+          May. 13, 2017
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          S-DEC
+        
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          3
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          5:00
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/f19d1c8ca5660240')" data-link="http://fightmetric.com/fight-details/f19d1c8ca5660240">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/f19d1c8ca5660240"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/f9f07bb5a43535ed">
+            Carlos Condit
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              2
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/cfbccfed4e4796fe">
+            UFC Fight Night: Maia vs. Condit
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+          Aug. 27, 2016
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          SUB
+        <img style="padding-bottom:3px" src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/perf.png" alt="">
+        </p>
+
+        <p class="b-fight-details__table-text">
+          Rear Naked Choke
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          1
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          1:52
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/9231cef371b89a46')" data-link="http://fightmetric.com/fight-details/9231cef371b89a46">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/9231cef371b89a46"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/31123249b0bbf52e">
+            Matt Brown
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              17
+            </p>
+
+            <p class="b-fight-details__table-text">
+              10
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              3
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              2
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              5
+            </p>
+
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/a4bf17bd3ba3423b">
+            UFC 198: Werdum vs Miocic
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+          May. 14, 2016
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          SUB
+        
+        </p>
+
+        <p class="b-fight-details__table-text">
+          Rear Naked Choke
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          3
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          4:31
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/8fe1859721e95ce3')" data-link="http://fightmetric.com/fight-details/8fe1859721e95ce3">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/8fe1859721e95ce3"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/fd55393021a8c255">
+            Gunnar Nelson
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              47
+            </p>
+
+            <p class="b-fight-details__table-text">
+              2
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              2
+            </p>
+
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              5
+            </p>
+
+            <p class="b-fight-details__table-text">
+              2
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/354808cf38d9d73c">
+            UFC 194: Aldo vs McGregor
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+          Dec. 12, 2015
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          U-DEC
+        
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          3
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          5:00
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/17daeb7e36e60cdf')" data-link="http://fightmetric.com/fight-details/17daeb7e36e60cdf">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/17daeb7e36e60cdf"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/84b3e7d38f2d2ec5">
+            Neil Magny
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              13
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              2
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              10
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/a9c45a8b21eabadc">
+            UFC 190: Rousey vs Correia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+          Aug. 01, 2015
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          SUB
+        <img style="padding-bottom:3px" src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/perf.png" alt="">
+        </p>
+
+        <p class="b-fight-details__table-text">
+          Rear Naked Choke
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          2
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          2:52
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/bc096e8ae14582ec')" data-link="http://fightmetric.com/fight-details/bc096e8ae14582ec">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/bc096e8ae14582ec"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/4c7781da8c6cae93">
+            Ryan LaFlare
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              36
+            </p>
+
+            <p class="b-fight-details__table-text">
+              25
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              5
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              2
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              14
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/fa534853eb195270">
+            UFC Fight Night: Maia vs LaFlare
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+          Mar. 21, 2015
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          U-DEC
+        
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          5
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          5:00
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/f9109d1e7c4ff9aa')" data-link="http://fightmetric.com/fight-details/f9109d1e7c4ff9aa">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/f9109d1e7c4ff9aa"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/d06f8869449ba7bd">
+            Alexander Yakovlev
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              29
+            </p>
+
+            <p class="b-fight-details__table-text">
+              22
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              2
+            </p>
+
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              5
+            </p>
+
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/59aaf2730b84698a">
+            TUF Brazil Finale: Miocic vs Maldonado
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+          May. 31, 2014
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          U-DEC
+        
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          3
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          5:00
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/29657325bfc1d590')" data-link="http://fightmetric.com/fight-details/29657325bfc1d590">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_bordered" href="http://fightmetric.com/fight-details/29657325bfc1d590"><i class="b-flag__inner"><i class="b-flag__text">loss<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/cbd5d3cdd862e90e">
+            Rory MacDonald
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              51
+            </p>
+
+            <p class="b-fight-details__table-text">
+              75
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              2
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/3138fab619faf4d1">
+            UFC 170: Rousey vs McMann
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+          Feb. 22, 2014
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          U-DEC
+        <img style="padding-bottom:3px" src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/fight.png" alt="">
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          3
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          5:00
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/a41ba2624191bf23')" data-link="http://fightmetric.com/fight-details/a41ba2624191bf23">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_bordered" href="http://fightmetric.com/fight-details/a41ba2624191bf23"><i class="b-flag__inner"><i class="b-flag__text">loss<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/fe435e440b5de0ff">
+            Jake Shields
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              24
+            </p>
+
+            <p class="b-fight-details__table-text">
+              35
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              3
+            </p>
+
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+
+            <p class="b-fight-details__table-text">
+              5
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/43612456979e5d5e">
+            UFC Fight Night: Maia vs Shields
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+          Oct. 09, 2013
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          S-DEC
+        
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          5
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          5:00
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/171eb38b335030d3')" data-link="http://fightmetric.com/fight-details/171eb38b335030d3">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/171eb38b335030d3"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/6f018c039b4d5d80">
+            Jon Fitch
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              12
+            </p>
+
+            <p class="b-fight-details__table-text">
+              6
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              7
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              3
+            </p>
+
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              5
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/601cf40c09090853">
+            UFC 156: Aldo vs Edgar
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+          Feb. 02, 2013
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          U-DEC
+        
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          3
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          5:00
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/219610bc6e7d9196')" data-link="http://fightmetric.com/fight-details/219610bc6e7d9196">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/219610bc6e7d9196"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/5b5307450405abf0">
+            Rick Story
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              5
+            </p>
+
+            <p class="b-fight-details__table-text">
+              3
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              3
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/96d173b7f92aa520">
+            UFC 153: Silva vs Bonnar
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+          Oct. 13, 2012
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          SUB
+        
+        </p>
+
+        <p class="b-fight-details__table-text">
+          Rear Naked Choke
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          1
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          2:30
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/61cb2ca1469c83ba')" data-link="http://fightmetric.com/fight-details/61cb2ca1469c83ba">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/61cb2ca1469c83ba"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/9bcf8603ceb25680">
+            Dong Hyun Kim
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+
+            <p class="b-fight-details__table-text">
+              8
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/e8efeb9cf33b1941">
+            UFC 148: Silva vs Sonnen 2
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+          Jul. 07, 2012
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          KO/TKO
+        
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          1
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          0:47
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/ba75be28158d424c')" data-link="http://fightmetric.com/fight-details/ba75be28158d424c">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_bordered" href="http://fightmetric.com/fight-details/ba75be28158d424c"><i class="b-flag__inner"><i class="b-flag__text">loss<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/3a8176e15b9887c1">
+            Chris Weidman
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              51
+            </p>
+
+            <p class="b-fight-details__table-text">
+              58
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+
+            <p class="b-fight-details__table-text">
+              4
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+
+            <p class="b-fight-details__table-text">
+              2
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/c3c23c99477c041b">
+            UFC on FOX: Evans vs Davis
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+          Jan. 28, 2012
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          U-DEC
+        
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          3
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          5:00
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/5f4284409503d874')" data-link="http://fightmetric.com/fight-details/5f4284409503d874">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/5f4284409503d874"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/f8dc544e7077d014">
+            Jorge Santiago
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              24
+            </p>
+
+            <p class="b-fight-details__table-text">
+              18
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              4
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              5
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/7d5b12de1625984e">
+            UFC 136: Edgar vs Maynard 3
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+          Oct. 08, 2011
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          U-DEC
+        
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          3
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          5:00
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/6dc666fd76a3b280')" data-link="http://fightmetric.com/fight-details/6dc666fd76a3b280">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_bordered" href="http://fightmetric.com/fight-details/6dc666fd76a3b280"><i class="b-flag__inner"><i class="b-flag__text">loss<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/179f1948dc234f1f">
+            Mark Munoz
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              32
+            </p>
+
+            <p class="b-fight-details__table-text">
+              44
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+
+            <p class="b-fight-details__table-text">
+              3
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              2
+            </p>
+
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/aac5ac38148f0528">
+            UFC 131: Dos Santos vs Carwin
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+          Jun. 11, 2011
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          U-DEC
+        
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          3
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          5:00
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/dee976dde74e7e05')" data-link="http://fightmetric.com/fight-details/dee976dde74e7e05">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/dee976dde74e7e05"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/234f3767ff0e5701">
+            Kendall Grove
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              42
+            </p>
+
+            <p class="b-fight-details__table-text">
+              18
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              5
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              6
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/5d7bdab5e03e3216">
+            The Ultimate Fighter 12: Team GSP vs Team Koscheck
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+          Dec. 04, 2010
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          U-DEC
+        
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          3
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          5:00
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/4bb7363bb03628f6')" data-link="http://fightmetric.com/fight-details/4bb7363bb03628f6">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/4bb7363bb03628f6"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/df2bf09c99594848">
+            Mario Miranda
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              30
+            </p>
+
+            <p class="b-fight-details__table-text">
+              14
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              5
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              6
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/054defd5420a551f">
+            UFC 118: Edgar vs Penn 2
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+          Aug. 28, 2010
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          U-DEC
+        
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          3
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          5:00
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/63f744d672fbb8b4')" data-link="http://fightmetric.com/fight-details/63f744d672fbb8b4">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_bordered" href="http://fightmetric.com/fight-details/63f744d672fbb8b4"><i class="b-flag__inner"><i class="b-flag__text">loss<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/1f454354805b6f75">
+            Anderson Silva
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              10
+            </p>
+
+            <p class="b-fight-details__table-text">
+              61
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/24b033b3daf1c9df">
+            UFC 112: Invincible
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+              <img src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/belt.png" alt="">
+          
+          Apr. 10, 2010
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          U-DEC
+        
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          5
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          5:00
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/83a7cc0b0de904b9')" data-link="http://fightmetric.com/fight-details/83a7cc0b0de904b9">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/83a7cc0b0de904b9"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/d0c29452d3272603">
+            Dan Miller
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              30
+            </p>
+
+            <p class="b-fight-details__table-text">
+              20
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              4
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/15edcf67ccf5be84">
+            UFC 109: Relentless
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+          Feb. 06, 2010
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          U-DEC
+        
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          3
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          5:00
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/3445246f8e3eba24')" data-link="http://fightmetric.com/fight-details/3445246f8e3eba24">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_bordered" href="http://fightmetric.com/fight-details/3445246f8e3eba24"><i class="b-flag__inner"><i class="b-flag__text">loss<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/a8e6a69796280f17">
+            Nate Marquardt
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/c6a33ff198aaaeeb">
+            UFC 102: Couture vs Nogueira
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+          Aug. 29, 2009
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          KO/TKO
+        
+        </p>
+
+        <p class="b-fight-details__table-text">
+          Punch
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          1
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          0:21
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/995d42d9ff422ed1')" data-link="http://fightmetric.com/fight-details/995d42d9ff422ed1">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/995d42d9ff422ed1"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/48d1f690b763934c">
+            Chael Sonnen
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              6
+            </p>
+
+            <p class="b-fight-details__table-text">
+              8
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/7d21de9c6d7c98b2">
+            UFC 95: Sanchez vs Stevenson
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+          Feb. 21, 2009
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          SUB
+        <img style="padding-bottom:3px" src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/sub.png" alt="">
+        </p>
+
+        <p class="b-fight-details__table-text">
+          Triangle Choke
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          1
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          2:37
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/bfd846ad4d597bbb')" data-link="http://fightmetric.com/fight-details/bfd846ad4d597bbb">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/bfd846ad4d597bbb"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/52cae54377b433b7">
+            Nate Quarry
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              2
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              3
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/a2b06ca02bca14c0">
+            UFC 91: Couture vs Lesnar
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+          Nov. 15, 2008
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          SUB
+        
+        </p>
+
+        <p class="b-fight-details__table-text">
+          Rear Naked Choke
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          1
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          2:13
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/31362d9ea15127b2')" data-link="http://fightmetric.com/fight-details/31362d9ea15127b2">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/31362d9ea15127b2"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/2be6596a9db33bf5">
+            Jason MacDonald
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              30
+            </p>
+
+            <p class="b-fight-details__table-text">
+              7
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              2
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              3
+            </p>
+
+            <p class="b-fight-details__table-text">
+              4
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              8
+            </p>
+
+            <p class="b-fight-details__table-text">
+              2
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/19ffeb5e3fffd6d5">
+            UFC 87: Seek And Destroy
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+          Aug. 09, 2008
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          SUB
+        <img style="padding-bottom:3px" src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/sub.png" alt="">
+        </p>
+
+        <p class="b-fight-details__table-text">
+          Rear Naked Choke
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          3
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          2:44
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/af178adff964d854')" data-link="http://fightmetric.com/fight-details/af178adff964d854">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/af178adff964d854"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/06f36cf4bd97ec77">
+            Ed Herman
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              15
+            </p>
+
+            <p class="b-fight-details__table-text">
+              15
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              3
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              3
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/ad047e3073a775f3">
+            UFC 83: Serra vs St-Pierre 2
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+          Apr. 19, 2008
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          SUB
+        <img style="padding-bottom:3px" src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/sub.png" alt="">
+        </p>
+
+        <p class="b-fight-details__table-text">
+          Triangle Choke
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          2
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          2:27
+
+        </p>
+      </td>
+    </tr>
+
+    
+    
+
+
+    <tr class="b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click" onclick="doNav('http://fightmetric.com/fight-details/5498622706d8dc17')" data-link="http://fightmetric.com/fight-details/5498622706d8dc17">
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          <a class="b-flag b-flag_style_green" href="http://fightmetric.com/fight-details/5498622706d8dc17"><i class="b-flag__inner"><i class="b-flag__text">win<i class="b-flag__corner"></i><i class="b-flag__corner-substrate"></i></i></i></a>
+
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/427b5953ac8e3a27">
+            Demian Maia
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/fighter-details/aae99701b21554e4">
+            Ryan Jensen
+          </a>
+        </p>
+      </td>
+          <td class="b-fight-details__table-col">
+
+            <p class="b-fight-details__table-text">
+              3
+            </p>
+
+            <p class="b-fight-details__table-text">
+              2
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              2
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              1
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+          <td class="b-fight-details__table-col">
+            <p class="b-fight-details__table-text">
+              2
+            </p>
+
+            <p class="b-fight-details__table-text">
+              0
+            </p>
+          </td>
+
+
+
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          <a class="b-link b-link_style_black" href="http://fightmetric.com/event-details/91181b29be041f1c">
+            UFC 77: Hostile Territory
+          </a>
+        </p>
+
+        <p class="b-fight-details__table-text">
+          
+          Oct. 20, 2007
+        </p>
+      </td>
+      <td class="b-fight-details__table-col l-page_align_left">
+        <p class="b-fight-details__table-text">
+          
+          
+
+          SUB
+        <img style="padding-bottom:3px" src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/sub.png" alt="">
+        </p>
+
+        <p class="b-fight-details__table-text">
+          Rear Naked Choke
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+          1
+        </p>
+      </td>
+      <td class="b-fight-details__table-col">
+        <p class="b-fight-details__table-text">
+
+          
+          2:40
+
+        </p>
+      </td>
+    </tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+    <footer class="b-foot">
+  <div class="b-twitter__bar">
+    <div class="l-page__container">
+      <i class="b-twitter__logo"></i>
+
+      <div class="b-twitter__entries js-tweets"><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/HugoStiglitz_88" target="_blank">@HugoStiglitz_88</a> <a href="http://twitter.com/KlaudeZ15" target="_blank">@KlaudeZ15</a> <a href="http://twitter.com/chrisruddy123" target="_blank">@chrisruddy123</a> <a href="http://twitter.com/M7md_Ayoob" target="_blank">@M7md_Ayoob</a> <a href="http://twitter.com/bisping" target="_blank">@bisping</a> <a href="http://twitter.com/BYMPod" target="_blank">@BYMPod</a> <a href="http://twitter.com/luisjgomez" target="_blank">@luisjgomez</a> <a href='https://t.co/CSIxnTHmFh' target="_blank" class=''>https://t.co/CSIxnTHmFh</a> ...yes he did.</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 1:55 PM Sep 18</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/albertolati" target="_blank">@albertolati</a> revisa Fightmetric, ve la pelea de nuevo. Estás muy equivocado, nadie le pasó por encima a nadie, fue pareja y la perdió Canelo</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 5:33 AM Sep 17</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/TJ_Scott_MMA" target="_blank">@TJ_Scott_MMA</a> <a href="http://twitter.com/flipgee_" target="_blank">@flipgee_</a> <a href="http://twitter.com/FightMetric" target="_blank">@FightMetric</a> Under the FightMetric definition jabs count as significant strikes</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 3:27 AM Sep 17</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/ZackFSmith" target="_blank">@ZackFSmith</a> Man I thought it was at least 4 in the 1st. 🤷🏻‍♂️ Lets see FightMetric mess this one up.</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 3:21 AM Sep 17</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text">That's a KD right? <a href="http://twitter.com/FightMetric" target="_blank">@FightMetric</a> <a href="http://twitter.com/FantasyAlarm" target="_blank">@FantasyAlarm</a> <a href="http://twitter.com/BrettAppley" target="_blank">@BrettAppley</a></p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 3:13 AM Sep 17</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/StrikeScoreMMA" target="_blank">@StrikeScoreMMA</a> <a href="http://twitter.com/flipgee_" target="_blank">@flipgee_</a> <a href="http://twitter.com/FightMetric" target="_blank">@FightMetric</a> Correct. I'm a licensed <a href="http://twitter.com/search?q=%23MMA" target="_blank">#MMA</a> judge &amp; I can tell u that I 💯% count stiff jabs… <a href='https://t.co/g0wbM70tSw' target="_blank" class=''>https://t.co/g0wbM70tSw</a></p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 3:02 AM Sep 17</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/flipgee_" target="_blank">@flipgee_</a> <a href="http://twitter.com/TJ_Scott_MMA" target="_blank">@TJ_Scott_MMA</a> <a href="http://twitter.com/FightMetric" target="_blank">@FightMetric</a> Jabs are significant. Ledet just missed the majority of his strikes</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 2:59 AM Sep 17</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/TJ_Scott_MMA" target="_blank">@TJ_Scott_MMA</a> <a href="http://twitter.com/FightMetric" target="_blank">@FightMetric</a> Fight metric I think, the commentators have commentated on it about wondering why they d… <a href='https://t.co/mYylDhqqGC' target="_blank" class=''>https://t.co/mYylDhqqGC</a></p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 2:40 AM Sep 17</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/flipgee_" target="_blank">@flipgee_</a> <a href="http://twitter.com/FightMetric" target="_blank">@FightMetric</a> From <a href="http://twitter.com/FightMetric" target="_blank">@FightMetric</a>'s perspective, or MMA in general?</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 2:39 AM Sep 17</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/TJ_Scott_MMA" target="_blank">@TJ_Scott_MMA</a> <a href="http://twitter.com/FightMetric" target="_blank">@FightMetric</a> Jabs don't "count" as sig strikes</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 2:33 AM Sep 17</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text">Someone please explain to me how <a href="http://twitter.com/FightMetric" target="_blank">@FightMetric</a> has Zu with 35 sig strikes and Ledet has 34? No way. Not a chance in hell.</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 2:29 AM Sep 17</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/theDFSniper" target="_blank">@theDFSniper</a> <a href="http://twitter.com/LeRoiStephonDFS" target="_blank">@LeRoiStephonDFS</a> <a href="http://twitter.com/DK_Assist" target="_blank">@DK_Assist</a> He grabbed him as he was falling and went down with him. Fightmetric is a… <a href='https://t.co/JttDjnb3bG' target="_blank" class=''>https://t.co/JttDjnb3bG</a></p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 1:26 AM Sep 17</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/LeRoiStephonDFS" target="_blank">@LeRoiStephonDFS</a> <a href="http://twitter.com/DK_Assist" target="_blank">@DK_Assist</a> See my other tweet, I had equal as Hamilton. It's still frustrating FightMetric fucks something up every card.</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 1:14 AM Sep 17</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/DK_Assist" target="_blank">@DK_Assist</a> <a href="http://twitter.com/BrettAppley" target="_blank">@BrettAppley</a> FightMetric is a flaming pile of garbage. Enjoy your day, <a href="http://twitter.com/DK_Assist" target="_blank">@DK_Assist</a></p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 6:44 PM Sep 14</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/DK_Assist" target="_blank">@DK_Assist</a> <a href="http://twitter.com/BrettAppley" target="_blank">@BrettAppley</a> So yeah it's fightmetric we're screwed</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 6:15 PM Sep 14</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/DK_Assist" target="_blank">@DK_Assist</a> who needs to announce it to make it official? Fightmetric?</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 4:43 PM Sep 14</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/ufc" target="_blank">@ufc</a> <a href="http://twitter.com/arielhelwani" target="_blank">@arielhelwani</a> <a href="http://twitter.com/BulletValentina" target="_blank">@BulletValentina</a> Fight metric also has nunes winning. <a href='https://t.co/5CMQWNQ5d3' target="_blank" class=''>https://t.co/5CMQWNQ5d3</a></p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 8:02 PM Sep 13</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/StangXx" target="_blank">@StangXx</a> <a href="http://twitter.com/bokamotoESPN" target="_blank">@bokamotoESPN</a> Fightmetric made the corrections.  Both sites are the same now w/Nunes advantage in strikes.… <a href='https://t.co/kIAYk5oG54' target="_blank" class=''>https://t.co/kIAYk5oG54</a></p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 1:38 AM Sep 12</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text"><a href="http://twitter.com/una80000" target="_blank">@una80000</a> FightmetricのスタッツはUFCの中だけのスタッツですからね</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric">12:33 AM Sep 12</a></p></div><div class="b-twitter__entry js-tweet"><p class="b-twitter__text">RT <a href="http://twitter.com/Lowkingpl" target="_blank">@Lowkingpl</a>: <a href="http://twitter.com/SandhuMMA" target="_blank">@SandhuMMA</a> According to FightMetric he was.</p><p class="b-twitter__date"><a class="b-twitter__username" href="http://twitter.com/search?q=fightmetric"> 9:48 PM Sep 11</a></p></div></div>
+
+      <div class="b-twitter__nav">
+        <a class="b-twitter__nav-link b-twitter__nav-link_type_prev js-tweets-prev"></a>
+        <a class="b-twitter__nav-link b-twitter__nav-link_type_forward js-tweets-forward"></a>
+      </div>
+    </div>
+  </div>
+  <div class="b-foot__inner">
+    <div class="l-page__container clearfix">
+      <a class="b-foot__logo" href="/">
+      <img src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/foot-logo.png" alt="">
+      </a>
+      <div class="b-foot__right">
+        <div class="clearfix">
+          <div class="b-foot__list-inner">
+            <h4 class="b-foot__list-title">
+              Navigation
+            </h4>
+            <ul class="b-foot__list">
+              <li class="b-foot__item">
+                <a class="b-foot__link" href="/statistics">
+                  Stats
+                </a>
+              </li>
+              <li class="b-foot__item">
+                <a class="b-foot__link" href="/data">
+                  Feeds
+                </a>
+              </li>
+              <li class="b-foot__item">
+                <a class="b-foot__link" href="/dev">
+                  Dev
+                </a>
+              </li>
+              <li class="b-foot__item">
+                <a class="b-foot__link" href="/company">
+                  Company
+                </a>
+              </li>
+              <li class="b-foot__item">
+                <a class="b-foot__link" href="/contact-us">
+                  Contact
+                </a>
+              </li>
+              <li class="b-foot__item">
+                <a class="b-foot__link" href="http://fmproduction.tv" target="_blank">
+                  FMProduction.TV
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="b-foot__list-inner">
+            <h4 class="b-foot__list-title">
+              Stats &amp; Data
+            </h4>
+            <ul class="b-foot__list">
+              <li class="b-foot__item">
+                <a class="b-foot__link" href="/statistics">
+                  Events &amp; Fights
+                </a>
+              </li>
+              <li class="b-foot__item">
+                <a class="b-foot__link" href="/statistics/fighters">
+                  Fighters
+                </a>
+              </li>
+              <li class="b-foot__item">
+                <a class="b-foot__link" href="/fighter-stats">
+                  Stat Leaders
+                </a>
+              </li>
+              <li class="b-foot__item">
+                <a class="b-foot__link" href="/rankings">
+                  Rankings
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="b-foot__list-inner">
+            <h4 class="b-foot__list-title">
+              Social
+            </h4>
+            <div class="b-socials clearfix">
+              <a class="b-socials__link b-socials__link_icon_tw" target="_blank" href="http://www.twitter.com/fightmetric">
+                <i class="b-socials__icon"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="b-foot__copy-inner">
+          &copy; FightMetric LLC. All Rights Reserved |
+          <a class="b-foot__copy-link" href="/terms">Terms of Use</a> |
+          <a class="b-foot__copy-link" href="/privacy">Privacy Policy</a>
+        </div>
+        <div class="b-foot__banners">
+          <img src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/official-provider.png" class="b-foot__banner" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+<script type="text/javascript" src="/js/vendor/jquery.validate.min.js"></script>
+<script src="/js/plugins.js"></script>
+<script src="/js/main.js?ver=75274"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(function () {
+            $("#dialog").dialog({
+
+                autoOpen: false,
+                modal: true,
+                show: {
+                    effect: "blind",
+                    duration: 1000
+                },
+                hide: {
+                    effect: "fold",
+                    duration: 1000
+                }
+
+            });
+        });
+    }
+
+    );
+    $("#opener").click(function () {
+        $("#dialog").dialog("open");
+    });
+    $("#opener").click(function () {
+        var state = true;
+        if (state) {
+            $("#dialog").animate({
+                backgroundColor: "white",
+                color: "black"
+
+            }, 1000);
+        }
+    });
+
+</script>
+
+<script type="text/javascript">
+
+ /*window.onload = function (){
+     // location.pathname.split( '/' )
+     theUrl = window.location.host;
+
+
+     if(theUrl === 'hosteddb.fightmetric.com'){
+         window.location.replace("http://www.fightmetric.com/statistics/events/upcoming");
+     }
+
+     //alert(theUrl);
+  }*/
+  //window.onpaint = handleHosted;
+</script>
+</body>
+</html>
