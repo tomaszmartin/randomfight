@@ -199,8 +199,10 @@ class Cumulator(Sequencer):
 
     def build_stats(self, fights):
         """Build cumulative stats for fighter."""
-        for fight in fights:
-
+        stats = []
+        for i, fight in enumerate(fights):
+            pass
+        return stats
 
     def transform(self):
         """Transforms fight stats into sequences."""
@@ -211,12 +213,13 @@ class Cumulator(Sequencer):
             fights = self.get_fights_for_fighter(fighter)
             current = self.build_stats(fights)
             self.transformed.extend(current)
-            
+
         return self.transformed
 
 
 if __name__ == '__main__':
-    seq = Cumulator()
-    merged = pd.read_csv('data/merged.csv')
-    transformed = pd.DataFrame.from_records(seq.fit_transform(merged))
-    transformed.to_json('data/transformed.json')
+    transformer = Cumulator()
+    data = pd.read_json('data/transformed.json')
+    transformed = transformer.fit_transform(data)
+    transformed = pd.DataFrame.from_records(transformed)
+    transformed.to_json('data/cumulative.json')
