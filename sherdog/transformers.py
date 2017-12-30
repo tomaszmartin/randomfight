@@ -197,11 +197,70 @@ class Sequencer():
 
 class Cumulator(Sequencer):
 
+    def fit(self, data):
+        """Saves the data for transformation."""
+        self.data = pd.DataFrame(data)
+
+    def get_fighters(self):
+        """Returns a list of fighter's names."""
+        fighter_ids = self.data['fighter'].apply(lambda x: x['id'])
+        return fighter_ids.unique().tolist()
+
+    def get_fights_for_fighter(self, name):
+        """Extracts all fights for a specific fighter."""
+        self.data['fighterid'] = self.data['fighter'].apply(lambda x: x['id'])
+        fights = self.data[self.data['fighterid'] == name]
+        fights_list = fights.T.to_dict().values()
+        # Sort fights from oldest to earliest
+        result = sorted(fights_list, key=lambda x: x['date'])
+        return result
+
     def build_stats(self, fights):
         """Build cumulative stats for fighter."""
         stats = []
         for i, fight in enumerate(fights):
-            pass
+            raw = {
+                'win': {
+                    'win': {
+                        'total': 0.0,
+                        'decision': 0.0,
+                        'submission': 0.0,
+                        'knockout': 0.0
+                    },
+                    'loss': {
+                        'total': 0.0,
+                        'decision': 0.0,
+                        'submission': 0.0,
+                        'knockout': 0.0,
+                    }
+                },
+                'loss': {
+                    'win': {
+                        'total': 0.0,
+                        'decision': 0.0,
+                        'submission': 0.0,
+                        'knockout': 0.0
+                    },
+                    'loss': {
+                        'total': 0.0,
+                        'decision': 0.0,
+                        'submission': 0.0,
+                        'knockout': 0.0,
+                    }
+                }}
+            fight = copy.deepcopy(fight)
+            if i == 0:
+                fight['fighter']['cumulative'] = raw
+                stats.append[fight]
+            else:
+                fight['fighter']['cumulative'] = copy.deepcopy(stats[i-1]['fighter']['cumulative'])
+                previous = copy.deepcopy(stats[i-1]['fighter']['history'])
+                result = previous['result']
+                for key in fight['fighter']['cumulative'][result].keys():
+                    for subkey, value in fight['fighter']['cumulative'][result][key].keys():
+                        fight['fighter']['cumulative'][result][key][subkey] += previous[key][subkey]
+                stats.append(fight)
+
         return stats
 
     def transform(self):
@@ -212,7 +271,6 @@ class Cumulator(Sequencer):
             print('Working on {} fighter out of {}'.format(i, len(fighters)))
             fights = self.get_fights_for_fighter(fighter)
             current = self.build_stats(fights)
-            self.transformed.extend(current)
 
         return self.transformed
 
