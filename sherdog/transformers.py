@@ -251,14 +251,14 @@ class Cumulator(Sequencer):
             fight = copy.deepcopy(fight)
             if i == 0:
                 fight['fighter']['cumulative'] = raw
-                stats.append[fight]
+                stats.append(fight)
             else:
                 fight['fighter']['cumulative'] = copy.deepcopy(stats[i-1]['fighter']['cumulative'])
-                previous = copy.deepcopy(stats[i-1]['fighter']['history'])
+                previous = copy.deepcopy(stats[i-1])
                 result = previous['result']
                 for key in fight['fighter']['cumulative'][result].keys():
-                    for subkey, value in fight['fighter']['cumulative'][result][key].keys():
-                        fight['fighter']['cumulative'][result][key][subkey] += previous[key][subkey]
+                    for subkey, value in fight['fighter']['cumulative'][result][key].items():
+                        fight['fighter']['cumulative'][result][key][subkey] += previous['fighter']['history'][key][subkey]
                 stats.append(fight)
 
         return stats
@@ -271,7 +271,7 @@ class Cumulator(Sequencer):
             print('Working on {} fighter out of {}'.format(i, len(fighters)))
             fights = self.get_fights_for_fighter(fighter)
             current = self.build_stats(fights)
-
+            self.transformed.append(current)
         return self.transformed
 
 
