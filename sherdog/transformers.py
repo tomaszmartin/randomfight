@@ -271,7 +271,7 @@ class Cumulator(Sequencer):
             print('Working on {} fighter out of {}'.format(i, len(fighters)))
             fights = self.get_fights_for_fighter(fighter)
             current = self.build_stats(fights)
-            self.transformed.append(current)
+            self.transformed.extend(current) # not append!
         return self.transformed
 
 
