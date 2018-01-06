@@ -176,8 +176,6 @@ class Sequencer():
                 pass
         return result
 
-        frame = pd.DataFrame(e(t))
-
     def transform(self):
         """Transforms fight stats into sequences."""
         self.transformed = []
@@ -272,7 +270,7 @@ class Cumulator(Sequencer):
             fights = self.get_fights_for_fighter(fighter)
             current = self.build_stats(fights)
             self.transformed.extend(current) # not append!
-        return self.transformed
+        return self.exchange(self.transformed)
 
 
 if __name__ == '__main__':
