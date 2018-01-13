@@ -93,80 +93,102 @@ class Sequencer():
         """Creates a list of fighters fights, with stats on the day before the fight."""
         stats = []
         for i, current_fight in enumerate(fights):
-            current = {
-                'id': current_fight['id'],
-                'date': self.parse_date(current_fight['date']),
-                'location': current_fight['location'],
-                'fighter': {
-                    'started': self.parse_date(current_fight['date']),
-                    'birth': self.parse_date(current_fight['fighter birth']),
-                    'association': self.parse_date(current_fight['fighter association']),
-                    'nationality': self.parse_date(current_fight['fighter nationality']),
-                    'id': current_fight['fighter'],
-                    'history': {
-                        'win': {
-                            'total': 0.0,
-                            'decision': 0.0,
-                            'submission': 0.0,
-                            'knockout': 0.0
+            try:
+                current = {
+                    'id': current_fight['id'],
+                    'date': self.parse_date(current_fight['date']),
+                    'location': current_fight['location'],
+                    'organization': current_fight['organization'],
+                    'fighter': {
+                        'started': self.parse_date(current_fight['date']),
+                        'birth': self.parse_date(current_fight['fighter birth']),
+                        'association': self.parse_date(current_fight['fighter association']),
+                        'nationality': self.parse_date(current_fight['fighter nationality']),
+                        'id': current_fight['fighter'],
+                        'since_last_fight': 0,
+                        'history': {
+                            'win': {
+                                'total': 0.0,
+                                'decision': 0.0,
+                                'submission': 0.0,
+                                'knockout': 0.0
+                            },
+                            'loss': {
+                                'total': 0.0,
+                                'decision': 0.0,
+                                'submission': 0.0,
+                                'knockout': 0.0,
+                            },
+                            'fights': 0.0,
+                            'time': 0.0,
+                            'positions': 0.0,
                         },
-                        'loss': {
-                            'total': 0.0,
-                            'decision': 0.0,
-                            'submission': 0.0,
-                            'knockout': 0.0,
+                        'streak': {
+                            'win': 0.0,
+                            'loss': 0.0
                         },
-                        'fights': 0.0,
-                        'time': 0.0,
-                        'positions': 0.0,
-                    }
-                },
-                'result': current_fight['result'],
-                'method': current_fight['method'],
-                'details': current_fight['details'],
-            }
-            if i > 0:
-                # Copt information form previous fights
-                current = copy.deepcopy(stats[i-1])
-                previous_fight = fights[i-1]
-                # Update stats with current information
-                current['id'] = current_fight['id']
-                current['date'] = self.parse_date(current_fight['date'])
-                for key in ['location', 'result', 'method', 'details']:
-                    current[key] = current_fight[key]
+                    },
+                    'result': current_fight['result'],
+                    'method': current_fight['method'],
+                    'details': current_fight['details'],
+                }
+                if i > 0:
+                    # Copt information form previous fights
+                    current = copy.deepcopy(stats[i-1])
+                    previous_fight = fights[i-1]
+                    # Update stats with current information
+                    current['id'] = current_fight['id']
+                    current['date'] = self.parse_date(current_fight['date'])
+                    for key in ['location', 'result', 'method', 'details', 'organization']:
+                        current[key] = current_fight[key]
 
-                # Add result from plast fight
-                result = previous_fight['result']
-                current['fighter']['history'][result]['total'] += 1
-                method = 'decision'
-                knockout_flags = ['ko', 'punches', 'knockout', 'cut', 'towel']
-                for flag in knockout_flags:
-                    if flag in str(previous_fight['method']):
-                        method = 'knockout'
-                submission_flags = ['sub', 'mata', 'armbar', 'choke', 'isaac',
-                                    'tapout', 'ubmission', 'forfeit']
-                for flag in submission_flags:
-                    if flag in str(previous_fight['method']):
-                        method = 'submission'
-                current['fighter']['history'][result][method] += 1
+                    # Add result from past fight
+                    result = previous_fight['result']
+                    current['fighter']['history'][result]['total'] += 1
+                    if result == 'win':
+                        current['fighter']['streak']['win'] += 1
+                        current['fighter']['streak']['loss'] = 0
+                    else:
+                        current['fighter']['streak']['loss'] += 1
+                        current['fighter']['streak']['win'] = 0
+                    method = 'decision'
+                    knockout_flags = ['ko', 'punches', 'knockout', 'cut', 'towel']
+                    for flag in knockout_flags:
+                        if flag in str(previous_fight['method']):
+                            method = 'knockout'
+                    submission_flags = ['sub', 'mata', 'armbar', 'choke', 'isaac',
+                                        'tapout', 'ubmission', 'forfeit']
+                    for flag in submission_flags:
+                        if flag in str(previous_fight['method']):
+                            method = 'submission'
+                    current['fighter']['history'][result][method] += 1
 
-                # Add stats
-                current['fighter']['history']['fights'] += 1
-                current['fighter']['history']['time'] += self.to_float(previous_fight['time'])
-                current['fighter']['history']['positions'] += self.to_float(previous_fight['position'])
-            stats.append(current)
+                    # Add stats
+                    current['fighter']['history']['since_last_fight'] = (current['date'] - stats[i-1]['date']).days
+                    current['fighter']['history']['fights'] += 1
+                    current['fighter']['history']['time'] += self.to_float(previous_fight['time'])
+                    current['fighter']['history']['positions'] += self.to_float(previous_fight['position'])
+                stats.append(current)
+            except Exception as exc:
+                from pprint import pprint
+                print('*'*50)
+                pprint(current)
+                print('*'*50)
+                pprint(stats)
+                raise exc
+
 
         return stats
 
     def exchange(self, data):
         ids = list(set([row['id'] for row in data]))
         result = []
-        for current in ids:
+        for i, current in enumerate(ids):
             try:
                 pair = []
                 for row in data:
                     if row['id'] == current:
-                        print(current)
+                        print('Exchenging data {} from {}'.format(i, len(ids)))
                         pair.append(row)
                 fighter, opponent = pair
                 fighter['opponent'] = opponent['fighter']
@@ -216,43 +238,44 @@ class Cumulator(Sequencer):
     def build_stats(self, fights):
         """Build cumulative stats for fighter."""
         stats = []
-        for i, fight in enumerate(fights):
-            raw = {
+        raw = {
+            'win': {
                 'win': {
-                    'win': {
-                        'total': 0.0,
-                        'decision': 0.0,
-                        'submission': 0.0,
-                        'knockout': 0.0
-                    },
-                    'loss': {
-                        'total': 0.0,
-                        'decision': 0.0,
-                        'submission': 0.0,
-                        'knockout': 0.0,
-                    }
+                    'total': 0.0,
+                    'decision': 0.0,
+                    'submission': 0.0,
+                    'knockout': 0.0
                 },
                 'loss': {
-                    'win': {
-                        'total': 0.0,
-                        'decision': 0.0,
-                        'submission': 0.0,
-                        'knockout': 0.0
-                    },
-                    'loss': {
-                        'total': 0.0,
-                        'decision': 0.0,
-                        'submission': 0.0,
-                        'knockout': 0.0,
-                    }
-                }}
+                    'total': 0.0,
+                    'decision': 0.0,
+                    'submission': 0.0,
+                    'knockout': 0.0,
+                }
+            },
+            'loss': {
+                'win': {
+                    'total': 0.0,
+                    'decision': 0.0,
+                    'submission': 0.0,
+                    'knockout': 0.0
+                },
+                'loss': {
+                    'total': 0.0,
+                    'decision': 0.0,
+                    'submission': 0.0,
+                    'knockout': 0.0,
+                }
+            }
+        }
+        for i, fight in enumerate(fights):
             fight = copy.deepcopy(fight)
             if i == 0:
                 fight['fighter']['cumulative'] = raw
                 stats.append(fight)
             else:
                 fight['fighter']['cumulative'] = copy.deepcopy(stats[i-1]['fighter']['cumulative'])
-                previous = copy.deepcopy(stats[i-1])
+                previous = stats[i-1]
                 result = previous['result']
                 for key in fight['fighter']['cumulative'][result].keys():
                     for subkey, value in fight['fighter']['cumulative'][result][key].items():
@@ -274,8 +297,14 @@ class Cumulator(Sequencer):
 
 
 if __name__ == '__main__':
+    # transformer = Sequencer()
+    # data = pd.read_csv('data/merged.csv')
+    # transformed = transformer.fit_transform(data)
+    # transformed = pd.DataFrame.from_records(transformed)
+    # transformed.to_json('data/transformed2.json')
+
     transformer = Cumulator()
-    data = pd.read_json('data/transformed.json')
+    data = pd.read_json('data/transformed2.json')
     transformed = transformer.fit_transform(data)
     transformed = pd.DataFrame.from_records(transformed)
-    transformed.to_json('data/cumulative.json')
+    transformed.to_json('data/cumulative2.json')
