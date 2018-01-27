@@ -10,7 +10,6 @@ import pandas as pd
 class Sequencer():
     """Transforms fights stats into sequences of pre fight stats."""
 
-
     def __init__(self):
         self.data = None
 
@@ -24,7 +23,7 @@ class Sequencer():
         fights = self.data[self.data['fighter'] == name]
         fights_list = fights.T.to_dict().values()
         # Sort fights from oldest to earliest
-        result = sorted(fights_list, key=lambda x: x['date'])
+        result = sorted(fights_list, key=lambda x: dt.strptime(x['date'], '%d.%m.%Y'))
         return result
 
     def get_fighters(self):
@@ -176,8 +175,6 @@ class Sequencer():
                 print('*'*50)
                 pprint(stats)
                 raise exc
-
-
         return stats
 
     def exchange(self, data):
@@ -232,7 +229,7 @@ class Cumulator(Sequencer):
         fights = self.data[self.data['fighterid'] == name]
         fights_list = fights.T.to_dict().values()
         # Sort fights from oldest to earliest
-        result = sorted(fights_list, key=lambda x: x['date'])
+        result = sorted(fights_list, key=lambda x: dt.strptime(x['date'], '%d.%m.%Y'))
         return result
 
     def build_stats(self, fights):
@@ -297,14 +294,14 @@ class Cumulator(Sequencer):
 
 
 if __name__ == '__main__':
-    # transformer = Sequencer()
-    # data = pd.read_csv('data/merged.csv')
-    # transformed = transformer.fit_transform(data)
-    # transformed = pd.DataFrame.from_records(transformed)
-    # transformed.to_json('data/transformed2.json')
-
-    transformer = Cumulator()
-    data = pd.read_json('data/transformed2.json')
+    transformer = Sequencer()
+    data = pd.read_csv('data/raw.csv')
     transformed = transformer.fit_transform(data)
     transformed = pd.DataFrame.from_records(transformed)
-    transformed.to_json('data/cumulative2.json')
+    transformed.to_json('data/transformed.json')
+
+    # transformer = Cumulator()
+    # data = pd.read_json('data/transformed.json')
+    # transformed = transformer.fit_transform(data)
+    # transformed = pd.DataFrame.from_records(transformed)
+    # transformed.to_json('data/cumulative.json')
