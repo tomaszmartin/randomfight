@@ -8,6 +8,9 @@ from threading import Thread
 from multiprocessing.pool import ThreadPool
 import os
 import re
+import time
+import asyncio
+from aiohttp import ClientSession
 
 def filepath(file):
     basepath = os.path.dirname(os.path.abspath(__file__))
@@ -25,26 +28,56 @@ def get_content(uri):
             content = response.read()
             return content
 
-def scrape(uri):
-    content = get_content(uri)
-    soup = bs(content, 'lxml')
-    data = {'fighter': uri}
-    data['birth'] = soup.find('span', {'itemprop': 'birthDate'}).text
-    height = soup.find('span', {'class': 'height'})
-    if height:
-        height = height.find('strong').text
-        height = height.replace('"', '')
-        data['height'] = float(height.replace('\'', '.'))
-    else:
-        data['height'] = None
-    association = soup.find('a', {'class': 'association'})
-    if association:
-        data['association'] = association.text
-    else:
-        data['association'] = None
-    data['nationality'] = soup.find('strong', {'itemprop': 'nationality'}).text
+def batch(iterable, n=1):
+    l = len(iterable)
+    for ndx in range(0, l, n):
+        yield iterable[ndx:min(ndx + n, l)], ndx
 
-    return data
+async def fetch(url, session):
+    async with session.get(url) as response:
+        return await response.read(), url
+
+async def scrape(links, ndx):
+    tasks = []
+    # Fetch all responses within one Client session,
+    # keep connection alive for all requests.
+    async with ClientSession() as session:
+        for link in links:
+            task = asyncio.ensure_future(fetch('http://www.sherdog.com/' + link, session))
+            tasks.append(task)
+
+        responses = await asyncio.gather(*tasks)
+        # you now have all response bodies in this variable
+        data = []
+        for content, url in responses:
+                current = parse(content, url)
+                data.append(current)
+
+        pd.DataFrame(data).to_csv('data/fighters/{}.csv'.format(ndx), index=False)
+
+def parse(content, uri):
+    try:
+        soup = bs(content, 'lxml')
+        data = {'fighter': uri}
+        data['birth'] = soup.find('span', {'itemprop': 'birthDate'}).text
+        height = soup.find('span', {'class': 'height'})
+        if height:
+            height = height.find('strong').text
+            height = height.replace('"', '')
+            data['height'] = float(height.replace('\'', '.'))
+        else:
+            data['height'] = None
+        association = soup.find('a', {'class': 'association'})
+        if association:
+            data['association'] = association.text
+        else:
+            data['association'] = None
+        data['nationality'] = soup.find('strong', {'itemprop': 'nationality'}).text
+        return data
+    except Exception as e:
+        print(uri)
+        print(e)
+        return {}
 
 def download(fighters, start):
     final = []
@@ -62,7 +95,7 @@ def download(fighters, start):
 def combine():
     fightspath = filepath('data.csv')
     fighterspath = filepath('fighters.csv')
-    fights = pd.read_csv(fightspath, sep=';', encoding='latin-1')
+    fights = pd.read_csv(fightspath)
     fighters = pd.read_csv(fighterspath, sep=';', encoding='latin-1')
     merged = fights.merge(fighters, on=['fighter'], how='left')
     fighters.rename(columns={'fighter': 'opponent'}, inplace=True)
@@ -77,6 +110,14 @@ def combine():
                             'nationality': 'opponent nationality'}, inplace=True)
     merged.to_csv(filepath('merged.csv'), index=False)
 
-
 if __name__ == '__main__':
-    combine()
+    links = pd.read_csv('data/fighters.csv', sep=';', encoding='latin-1')
+    links = links['fighter'].tolist()
+    for current, ndx in batch(links, 100):
+        if ndx > 16600:
+            start = time.time()
+            loop = asyncio.get_event_loop()
+            future = asyncio.ensure_future(scrape(current, ndx))
+            loop.run_until_complete(future)
+            elapsed = time.time() - start
+            print('Saved batch {} in {:.2f} seconds'.format(ndx, elapsed))

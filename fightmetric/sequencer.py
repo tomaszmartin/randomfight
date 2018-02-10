@@ -5,6 +5,7 @@ import datetime
 import json
 from pprint import pprint
 import pandas as pd
+import time
 
 
 class Sequencer():
@@ -179,9 +180,172 @@ class Sequencer():
         self.fit(data)
         return self.transform()
 
+class Cumulator(Sequencer):
+
+    def fit(self, data):
+        """Saves the data for transformation."""
+        self.data = pd.DataFrame(data)
+
+    def get_fighters(self):
+        """Returns a list of fighter's names."""
+        fighter_ids = self.data['fighter'].apply(lambda x: x['name'])
+        return fighter_ids.unique().tolist()
+
+    def get_fights_for_fighter(self, name):
+        """Extracts all fights for a specific fighter."""
+        self.data['fighterid'] = self.data['fighter'].apply(lambda x: x['name'])
+        fights = self.data[self.data['fighterid'] == name]
+        fights_list = fights.T.to_dict().values()
+        # Sort fights from oldest to earliest
+        result = sorted(fights_list, key=lambda x: x['date'])
+        return result
+
+    def build_stats(self, fights):
+        """Build cumulative stats for fighter."""
+        stats = []
+        raw = {
+            'win': {
+                'win': {
+                    'total': 0.0,
+                    'decision': 0.0,
+                    'submission': 0.0,
+                    'knockout': 0.0
+                },
+                'loss': {
+                    'total': 0.0,
+                    'decision': 0.0,
+                    'submission': 0.0,
+                    'knockout': 0.0,
+                },
+                'nc': {
+                    'total': 0.0,
+                    'decision': 0.0,
+                    'submission': 0.0,
+                    'knockout': 0.0,
+                },
+                'draw': {
+                    'total': 0.0,
+                    'decision': 0.0,
+                    'submission': 0.0,
+                    'knockout': 0.0,
+                }
+            },
+            'loss': {
+                'win': {
+                    'total': 0.0,
+                    'decision': 0.0,
+                    'submission': 0.0,
+                    'knockout': 0.0
+                },
+                'loss': {
+                    'total': 0.0,
+                    'decision': 0.0,
+                    'submission': 0.0,
+                    'knockout': 0.0,
+                },
+                'nc': {
+                    'total': 0.0,
+                    'decision': 0.0,
+                    'submission': 0.0,
+                    'knockout': 0.0,
+                },
+                'draw': {
+                    'total': 0.0,
+                    'decision': 0.0,
+                    'submission': 0.0,
+                    'knockout': 0.0,
+                }
+            },
+            'nc': {
+                'win': {
+                    'total': 0.0,
+                    'decision': 0.0,
+                    'submission': 0.0,
+                    'knockout': 0.0
+                },
+                'loss': {
+                    'total': 0.0,
+                    'decision': 0.0,
+                    'submission': 0.0,
+                    'knockout': 0.0,
+                },
+                'nc': {
+                    'total': 0.0,
+                    'decision': 0.0,
+                    'submission': 0.0,
+                    'knockout': 0.0,
+                },
+                'draw': {
+                    'total': 0.0,
+                    'decision': 0.0,
+                    'submission': 0.0,
+                    'knockout': 0.0,
+                }
+            },
+            'draw': {
+                'win': {
+                    'total': 0.0,
+                    'decision': 0.0,
+                    'submission': 0.0,
+                    'knockout': 0.0
+                },
+                'loss': {
+                    'total': 0.0,
+                    'decision': 0.0,
+                    'submission': 0.0,
+                    'knockout': 0.0,
+                },
+                'nc': {
+                    'total': 0.0,
+                    'decision': 0.0,
+                    'submission': 0.0,
+                    'knockout': 0.0,
+                },
+                'draw': {
+                    'total': 0.0,
+                    'decision': 0.0,
+                    'submission': 0.0,
+                    'knockout': 0.0,
+                }
+            }
+        }
+        for i, fight in enumerate(fights):
+            fight = copy.deepcopy(fight)
+            if i == 0:
+                fight['fighter']['cumulative'] = raw
+                stats.append(fight)
+            else:
+                fight['fighter']['cumulative'] = copy.deepcopy(stats[i-1]['fighter']['cumulative'])
+                previous = stats[i-1]
+                result = previous['result']
+                for key in fight['fighter']['cumulative'][result].keys():
+                    for subkey, value in fight['fighter']['cumulative'][result][key].items():
+                        fight['fighter']['cumulative'][result][key][subkey] += previous['fighter']['history'][key][subkey]
+                stats.append(fight)
+
+        return stats
+
+    def transform(self):
+        """Transforms fight stats into sequences."""
+        self.transformed = []
+        fighters = self.get_fighters()
+        start = time.time()
+        for i, fighter in enumerate(fighters):
+            if (i % 1000 == 0):
+                print('Working on {} fighter out of {}'.format(i, len(fighters)))
+            fights = self.get_fights_for_fighter(fighter)
+            current = self.build_stats(fights)
+            self.transformed.extend(current) # not append!
+        return self.transformed
+
 
 if __name__ == '__main__':
-    seq = Sequencer()
-    raw = pd.read_csv('data/data.csv')
+    # seq = Sequencer()
+    # raw = pd.read_csv('data/data.csv')
+    # transformed = seq.fit_transform(raw)
+    # pd.DataFrame.from_records(transformed).to_json('data/imputed.json')
+
+    seq = Cumulator()
+    raw = pd.read_json('data/final.json')
     transformed = seq.fit_transform(raw)
-    pd.DataFrame.from_records(transformed).to_json('data/imputed.json')
+    pd.DataFrame.from_records(transformed).to_json('data/cumulative.json')

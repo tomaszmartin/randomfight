@@ -5,6 +5,7 @@ from datetime import datetime as dt
 import json
 from pprint import pprint
 import pandas as pd
+import time
 
 
 class Sequencer():
@@ -23,7 +24,7 @@ class Sequencer():
         fights = self.data[self.data['fighter'] == name]
         fights_list = fights.T.to_dict().values()
         # Sort fights from oldest to earliest
-        result = sorted(fights_list, key=lambda x: dt.strptime(x['date'], '%d.%m.%Y'))
+        result = sorted(fights_list, key=lambda x: dt.strptime(x['date'], '%Y-%m-%d'))
         return result
 
     def get_fighters(self):
@@ -60,33 +61,7 @@ class Sequencer():
 
     @staticmethod
     def parse_date(x):
-        try:
-            return dt.strptime(x, '%d.%m.%Y').date()
-        except:
-            return None
-
-    @staticmethod
-    def to_float(number):
-        map = {
-            'sty': 1, 'lut': 2, 'mar': 3, 'kwi': 4, 'maj': 5, 'cze': 6,
-            'lip': 7, 'sie': 8, 'wrz': 9, 'pa\x90': 10, 'lis': 11, 'gru': 12
-        }
-        try:
-            return float(number)
-        except ValueError:
-            big = str(number).split('.')[0]
-            small = str(number).split('.')[1]
-            if big.isdigit():
-                big = float(big)
-            else:
-                big = float(map[big])
-            if small.isdigit():
-                small = float(small) / 10
-            else:
-                small = float(map[small]) / 10
-            if small > 1:
-                small = small / 10
-            return big + small
+        return dt.strptime(x, '%Y-%m-%d').date()
 
     def build_stats(self, fights):
         """Creates a list of fighters fights, with stats on the day before the fight."""
@@ -95,16 +70,15 @@ class Sequencer():
             try:
                 current = {
                     'id': current_fight['id'],
-                    'date': self.parse_date(current_fight['date']),
+                    'date': ['date'],
                     'location': current_fight['location'],
                     'organization': current_fight['organization'],
                     'fighter': {
-                        'started': self.parse_date(current_fight['date']),
-                        'birth': self.parse_date(current_fight['fighter birth']),
-                        'association': self.parse_date(current_fight['fighter association']),
-                        'nationality': self.parse_date(current_fight['fighter nationality']),
+                        'started': current_fight['date'],
+                        'birth': current_fight['fighter birth'],
+                        'association': current_fight['fighter association'],
+                        'nationality': current_fight['fighter nationality'],
                         'id': current_fight['fighter'],
-                        'since_last_fight': 0,
                         'history': {
                             'win': {
                                 'total': 0.0,
@@ -118,6 +92,7 @@ class Sequencer():
                                 'submission': 0.0,
                                 'knockout': 0.0,
                             },
+                            'since_last_fight': 0,
                             'fights': 0.0,
                             'time': 0.0,
                             'positions': 0.0,
@@ -142,14 +117,14 @@ class Sequencer():
                         current[key] = current_fight[key]
 
                     # Add result from past fight
-                    result = previous_fight['result']
-                    current['fighter']['history'][result]['total'] += 1
+                    result = previous_fight['result'].lower()
+                    current['fighter']['history'][result]['total'] += 1.0
                     if result == 'win':
-                        current['fighter']['streak']['win'] += 1
-                        current['fighter']['streak']['loss'] = 0
+                        current['fighter']['streak']['win'] += 1.0
+                        current['fighter']['streak']['loss'] = 0.0
                     else:
-                        current['fighter']['streak']['loss'] += 1
-                        current['fighter']['streak']['win'] = 0
+                        current['fighter']['streak']['loss'] += 1.0
+                        current['fighter']['streak']['win'] = 0.0
                     method = 'decision'
                     knockout_flags = ['ko', 'punches', 'knockout', 'cut', 'towel']
                     for flag in knockout_flags:
@@ -160,32 +135,40 @@ class Sequencer():
                     for flag in submission_flags:
                         if flag in str(previous_fight['method']):
                             method = 'submission'
-                    current['fighter']['history'][result][method] += 1
+                    current['fighter']['history'][result][method] += 1.0
 
                     # Add stats
-                    current['fighter']['history']['since_last_fight'] = (current['date'] - stats[i-1]['date']).days
-                    current['fighter']['history']['fights'] += 1
-                    current['fighter']['history']['time'] += self.to_float(previous_fight['time'])
-                    current['fighter']['history']['positions'] += self.to_float(previous_fight['position'])
+                    current['fighter']'history']['since_last_fight'] = (current['date'] - stats[i-1]['date']).days
+                    current['fighter']['history']['fights'] += 1.0
+                    current['fighter']['history']['time'] += float(previous_fight['time']) * float(previous_fight['position'])
+                    current['fighter']['history']['positions'] += float(previous_fight['position'])
+
+                    assert current['fighter']['history']['since_last_fight'] > 0
+                    assert current['fighter']['history']['fights'] < 100
                 stats.append(current)
             except Exception as exc:
-                from pprint import pprint
-                print('*'*50)
-                pprint(current)
-                print('*'*50)
+                print(exc)
                 pprint(stats)
                 raise exc
+
+        print([s['fighter']['history'] for s in stats])
+        if (len(stats) > 10):
+            pprint(stats)
+            exit()
         return stats
 
     def exchange(self, data):
         ids = list(set([row['id'] for row in data]))
         result = []
+        start = time.time()
         for i, current in enumerate(ids):
+            if (i % 1000 == 0):
+                print('Exchenging data {} from {} in {:.2f}'.format(i, len(ids), time.time() - start))
+                start = time.time()
             try:
                 pair = []
                 for row in data:
                     if row['id'] == current:
-                        print('Exchenging data {} from {}'.format(i, len(ids)))
                         pair.append(row)
                 fighter, opponent = pair
                 fighter['opponent'] = opponent['fighter']
@@ -199,12 +182,15 @@ class Sequencer():
         """Transforms fight stats into sequences."""
         self.transformed = []
         fighters = self.get_fighters()
+        start = time.time()
         for i, fighter in enumerate(fighters):
-            print('Working on {} fighter out of {}'.format(i, len(fighters)))
+            if (i % 1000 == 0):
+                print('Working on {} fighter out of {} in {:.2f}'.format(i, len(fighters), time.time() - start))
+                start = time.time()
             fights = self.get_fights_for_fighter(fighter)
             current = self.build_stats(fights)
             self.transformed.extend(current)
-        return self.exchange(self.transformed)
+        return self.transformed
 
     def fit_transform(self, data):
         """Transforms fight stats into sequences."""
@@ -229,7 +215,7 @@ class Cumulator(Sequencer):
         fights = self.data[self.data['fighterid'] == name]
         fights_list = fights.T.to_dict().values()
         # Sort fights from oldest to earliest
-        result = sorted(fights_list, key=lambda x: dt.strptime(x['date'], '%d.%m.%Y'))
+        result = sorted(fights_list, key=lambda x: x['date'])
         return result
 
     def build_stats(self, fights):
@@ -237,32 +223,11 @@ class Cumulator(Sequencer):
         stats = []
         raw = {
             'win': {
-                'win': {
-                    'total': 0.0,
-                    'decision': 0.0,
-                    'submission': 0.0,
-                    'knockout': 0.0
-                },
-                'loss': {
-                    'total': 0.0,
-                    'decision': 0.0,
-                    'submission': 0.0,
-                    'knockout': 0.0,
-                }
-            },
-            'loss': {
-                'win': {
-                    'total': 0.0,
-                    'decision': 0.0,
-                    'submission': 0.0,
-                    'knockout': 0.0
-                },
-                'loss': {
-                    'total': 0.0,
-                    'decision': 0.0,
-                    'submission': 0.0,
-                    'knockout': 0.0,
-                }
+                'win': { 'total': 0.0, 'decision': 0.0, 'submission': 0.0, 'knockout': 0.0},
+                'loss': {'total': 0.0, 'decision': 0.0, 'submission': 0.0, 'knockout': 0.0},
+            }, 'loss': {
+                'win': { 'total': 0.0, 'decision': 0.0, 'submission': 0.0, 'knockout': 0.0},
+                'loss': {'total': 0.0, 'decision': 0.0, 'submission': 0.0, 'knockout': 0.0},
             }
         }
         for i, fight in enumerate(fights):
@@ -273,7 +238,7 @@ class Cumulator(Sequencer):
             else:
                 fight['fighter']['cumulative'] = copy.deepcopy(stats[i-1]['fighter']['cumulative'])
                 previous = stats[i-1]
-                result = previous['result']
+                result = previous['result'].lower()
                 for key in fight['fighter']['cumulative'][result].keys():
                     for subkey, value in fight['fighter']['cumulative'][result][key].items():
                         fight['fighter']['cumulative'][result][key][subkey] += previous['fighter']['history'][key][subkey]
@@ -285,23 +250,33 @@ class Cumulator(Sequencer):
         """Transforms fight stats into sequences."""
         self.transformed = []
         fighters = self.get_fighters()
+        start = time.time()
         for i, fighter in enumerate(fighters):
-            print('Working on {} fighter out of {}'.format(i, len(fighters)))
+            if (i % 1000 == 0):
+                print('Working on {} fighter out of {} in {:.2f}'.format(i, len(fighters), time.time() - start))
+                start = time.time()
             fights = self.get_fights_for_fighter(fighter)
             current = self.build_stats(fights)
             self.transformed.extend(current) # not append!
-        return self.exchange(self.transformed)
+        return self.transformed
 
 
 if __name__ == '__main__':
     transformer = Sequencer()
-    data = pd.read_csv('data/raw.csv')
+    data = pd.read_csv('data/merged.csv')
+    data = data[data['result'].isin['win', loss]]
     transformed = transformer.fit_transform(data)
-    transformed = pd.DataFrame.from_records(transformed)
-    transformed.to_json('data/transformed.json')
+    frame = pd.DataFrame.from_records(transformed)
+    frame.to_json('data/transformed2.json')
+    exchanged = transformer.exchange(transformed)
+    final = pd.DataFrame.from_records(exchanged)
+    final.to_json('data/transformed_exchanged2.json')
 
     # transformer = Cumulator()
-    # data = pd.read_json('data/transformed.json')
+    # data = pd.read_json('data/final.json')
     # transformed = transformer.fit_transform(data)
-    # transformed = pd.DataFrame.from_records(transformed)
-    # transformed.to_json('data/cumulative.json')
+    # transformed_df = pd.DataFrame.from_records(transformed)
+    # transformed_df.to_json('data/partial-cumulative.json')
+    # exchanged = transformer.exchange(transformed)
+    # final = pd.DataFrame.from_records(exchanged)
+    # final.to_json('data/cumulative.json')
