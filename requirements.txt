@@ -1,2 +1,5 @@
-pandas
+aiohttp
 bs4
+pandas
+lxml
+requests
