@@ -6,7 +6,9 @@ import logging
 from typing import Any, Dict, List, Optional
 from urllib.parse import urlparse
 
+import hashlib
 import re
+
 from bs4 import BeautifulSoup
 from bs4.element import Tag
 
@@ -30,10 +32,12 @@ def extract_fights(content: Optional[str], url: str) -> List[Dict[str, Any]]:
     fights = _extract_fights_from_event(content)
     # Add event info to the fights
     for fight in fights:
+        fight["url"] = url
         fight["title"] = event["title"]
         fight["organization"] = event["organization"]
         fight["date"] = event["date"]
         fight["location"] = event["location"]
+        fight["id"] = _create_fight_id(fight)
     return fights
 
 
@@ -56,6 +60,11 @@ def extract_events_links(content: Optional[str], url: str) -> List[str]:
     links = soup.find_all("a", href=re.compile("events"))
     events = [domain + link["href"] for link in links]
     return events
+
+def _create_fight_id(fight: Dict[str, Any]) -> str:
+    raw_id = fight["fighter"] + fight["opponent"] + fight["date"].isoformat() + fight["title"]
+    result = hashlib.md5(raw_id.encode())
+    return result.hexdigest()
 
 
 def _extract_event_data(content: str, url: str) -> Dict[str, Any]:
@@ -167,7 +176,9 @@ def _parse_time(text: str, rounds: int, method: str) -> float:
     try:
         # First try to clean the text
         timestr = text.replace("#", "3")
+        timestr = timestr.replace("N/A", "")
         timestr = timestr.replace("!", "1")
+        timestr = timestr.replace("$", "4")
         timestr = timestr.replace(")", "0")
         timestr = timestr.replace("?", ".")
         timestr = timestr.replace('"', ".")
@@ -179,21 +190,32 @@ def _parse_time(text: str, rounds: int, method: str) -> float:
         timestr = re.sub(r"[a-z]+", "", timestr, flags=re.I)
         parts = timestr.split(".")
 
-        if len(parts) == 2:
-            minutes = float(parts[0])
+        if len(parts) == 3:
+            if not parts[:-2]:
+                minutes = 0.0
+            else:
+                minutes = float(parts[-2])
+            seconds = float(parts[-1])
+        elif len(parts) == 2:
+            if not parts[0]:
+                minutes = 0.0
+            else:
+                minutes = float(parts[0])
             seconds = float(parts[1])
         else:
-            if timestr:
+            try:
                 minutes = float(timestr)
-                seconds = 0.0
+            except ValueError:
+                minutes = 5
+            seconds = 0.0
 
         if not minutes:
             minutes = 0
 
-        time = (rounds - 1) * 5 + float(minutes + seconds / 60)
+        time = (rounds - 1) * 5.0 + float(minutes + seconds / 60.0)
         return time
     except Exception as exc:
-        logging.warning(f"Error parsing time from: {text}")
+        logging.exception(f"Error parsing time from: {text}")
         raise exc
 
 
