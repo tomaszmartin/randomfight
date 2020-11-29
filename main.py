@@ -11,11 +11,13 @@ def generate_event_listing_uris(start=1, n=500):
 
 
 if __name__ == "__main__":
-    start = 70
-    lists = generate_event_listing_uris(start, 7)
+    data = pd.DataFrame()
+    lists = generate_event_listing_uris(1)
     for i, listing_url in enumerate(lists):
-        logging.info(f"Downloading {i} of {len(lists)}")
         listing_content = scraper.get_content(listing_url)
         events = parser.extract_events_links(listing_content, listing_url)
         fights = scraper.run(events, parser.extract_fights, 25)
-        pd.DataFrame(fights).to_csv(f"data/fights/{start+i}.csv", index=False)
+        curr_frame = pd.DataFrame(fights)
+        data = data.append(curr_frame)
+        data.to_csv(f"data/fights.csv", index=False)
+        logging.info(f"Extracted {i} of {len(lists)}: having {len(data)} fights.")
