@@ -188,6 +188,7 @@ def _parse_time(text: str, rounds: int, method: str) -> float:
         timestr = timestr.replace("`", "")
 
         timestr = re.sub(r"[a-z]+", "", timestr, flags=re.I)
+        timestr = "".join(timestr.split())
         parts = timestr.split(".")
 
         if len(parts) == 3:
