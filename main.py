@@ -2,10 +2,11 @@ import logging
 
 import pandas as pd
 
-from tools import scraper
-from sherdog import parser
+from app.tools import scraper
+from app.parsers import sherdog
 
-def generate_event_listing_uris(start: int=1, end: int=500):
+
+def generate_event_listing_uris(start: int = 1, end: int = 500):
     """Generates uris for listing pages where all events
     links are listed.
 
@@ -27,12 +28,13 @@ if __name__ == "__main__":
     lists = generate_event_listing_uris(100, 150)
     for i, listing_url in enumerate(lists):
         listing_content = scraper.get_content(listing_url)
-        events = parser.extract_events_links(listing_content, listing_url)
+        events = sherdog.extract_events_links(listing_content, listing_url)
         events = list(set(events).difference(set(scraped)))
-        logging.info(f"[{listing_url} {i}:{len(lists)}]: Found {len(events)} events to scrape.")
+        logging.info(
+            f"[{listing_url} {i}:{len(lists)}]: Found {len(events)} events to scrape."
+        )
         if events:
-            fights = scraper.run(events, parser.extract_fights, 25)
+            fights = scraper.run(events, sherdog.extract_fights, 25)
             curr_frame = pd.DataFrame(fights)
             data = data.append(curr_frame)
             data.to_csv(filename, index=False)
-        

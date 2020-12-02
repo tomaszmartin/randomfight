@@ -1,5 +1,8 @@
-aiohttp
-bs4
-pandas
-lxml
-requests
+aiohttp==3.7.2
+bs4==0.0.1
+lxml==4.6.1
+mypy==0.790
+pandas==1.1.4
+pylint==2.6.0
+pytest==6.1.2
+requests==2.25.0

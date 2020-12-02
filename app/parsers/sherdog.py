@@ -13,6 +13,39 @@ from bs4 import BeautifulSoup
 from bs4.element import Tag
 
 
+def extract_fighter_info(content: Optional[str], url: str) -> Dict[str, Any]:
+    """Extracts fighter information from website content.
+
+    Args:
+        content (Optional[str]): website content.
+        url (str): url of the website.
+
+    Returns:
+        Dict[str, Any]: data about the fighter.
+    """
+    try:
+        soup = BeautifulSoup(content, "lxml")
+        data: Dict[str, Any] = {"fighter": url}
+        data["birth"] = soup.find("span", {"itemprop": "birthDate"}).text
+        height = soup.find("span", {"class": "height"})
+        if height:
+            height = height.find("strong").text
+            height = height.replace('"', "")
+            data["height"] = float(height.replace("'", "."))
+        else:
+            data["height"] = None
+        association = soup.find("a", {"class": "association"})
+        if association:
+            data["association"] = association.text
+        else:
+            data["association"] = None
+        data["nationality"] = soup.find("strong", {"itemprop": "nationality"}).text
+        return data
+    except Exception as err:
+        logging.exception("Error parsing: %s", url)
+        raise err
+
+
 def extract_fights(content: Optional[str], url: str) -> List[Dict[str, Any]]:
     """Takes a content of an event page and
     extracts all fights data from it.
@@ -61,8 +94,14 @@ def extract_events_links(content: Optional[str], url: str) -> List[str]:
     events = [domain + link["href"] for link in links]
     return events
 
+
 def _create_fight_id(fight: Dict[str, Any]) -> str:
-    raw_id = fight["fighter"] + fight["opponent"] + fight["date"].isoformat() + fight["title"]
+    raw_id = (
+        fight["fighter"]
+        + fight["opponent"]
+        + fight["date"].isoformat()
+        + fight["title"]
+    )
     result = hashlib.md5(raw_id.encode())
     return result.hexdigest()
 
@@ -125,7 +164,7 @@ def _extract_other_fights_from_event(
     soup: BeautifulSoup,
 ) -> List[Optional[Dict[str, Any]]]:
     data = []
-    fights = [fight for fight in soup.find_all("tr", {"itemprop": "subEvent"})]
+    fights = soup.find_all("tr", {"itemprop": "subEvent"})
     for position, fight in enumerate(fights, 2):
         fighter_elem = fight.find("td", {"class": "text_right"})
         opponent_elem = fight.find("td", {"class": "text_left"})
@@ -163,7 +202,7 @@ def _create_fight(
         data["details"] = data["details"].replace("(", "").replace(")", "").lower()
         data["result"] = result_elem.text
         data["rounds"] = int(rounds_elem.text.replace("Round", ""))
-        data["time"] = _parse_time(time_elem.text, data["rounds"], data["method"])
+        data["time"] = _parse_time(time_elem.text, data["rounds"])
         data["fighter"] = fighter_elem.find("a")["href"]
         data["opponent"] = opponent_elem.find("a")["href"]
         data["position"] = position
@@ -172,7 +211,7 @@ def _create_fight(
         return None
 
 
-def _parse_time(text: str, rounds: int, method: str) -> float:
+def _parse_time(text: str, rounds: int) -> float:
     try:
         # First try to clean the text
         timestr = text.replace("#", "3")
@@ -216,7 +255,7 @@ def _parse_time(text: str, rounds: int, method: str) -> float:
         time = (rounds - 1) * 5.0 + float(minutes + seconds / 60.0)
         return time
     except Exception as exc:
-        logging.exception(f"Error parsing time from: {text}")
+        logging.exception("Error parsing time from: %s", time)
         raise exc
 
 

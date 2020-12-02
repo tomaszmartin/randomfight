@@ -1,14 +1,12 @@
 """Responsible for sequencing fights data in time."""
 import copy
 import time
-from datetime import datetime as dt
-from typing import List, Dict
+import datetime as dt
+from typing import Any, Dict, List
 import pandas as pd
 
-pd.options.mode.chained_assignment = None
 
-
-class Sequencer(object):
+class Sequencer:
     """Transforms fights stats into sequences of pre fight stats."""
 
     def __init__(self):
@@ -42,10 +40,27 @@ class Sequencer(object):
         return data
 
     @staticmethod
-    def parse_date(x):
-        return dt.strptime(x, "%Y-%m-%d").date()
+    def parse_date(datestr: str) -> dt.date:
+        """Parses date from date string.
 
-    def create_empty_stat(self, current_fight):
+        Args:
+            timestr (str): [description]
+
+        Returns:
+            [type]: [description]
+        """
+        return dt.datetime.strptime(datestr, "%Y-%m-%d").date()
+
+    def create_init_stat(self, current_fight: Dict[str, Any]) -> Dict[str, Any]:
+        """Creates base statictis dict and initiates
+        it with zero values.
+
+        Args:
+            current_fight (Dict[str, Any]): fight information.
+
+        Returns:
+            Dict[str, Any]: statistics dict.
+        """
         return {
             "id": current_fight["id"],
             "date": self.parse_date(current_fight["date"]),
@@ -82,10 +97,10 @@ class Sequencer(object):
 
     def create_stat(
         self,
-        current_stat=None,
-        previous_stat=None,
-        current_fight=None,
-        previous_fight=None,
+        current_stat,
+        previous_stat,
+        current_fight,
+        previous_fight,
     ):
         current_stat["id"] = current_fight["id"]
         current_stat["date"] = self.parse_date(current_fight["date"])
@@ -136,13 +151,16 @@ class Sequencer(object):
 
         return current_stat
 
-    def get_fights_for_fighter(self, fighter) -> List[Dict]:
+    def get_fights_for_fighter(self, name: str) -> List[Dict]:
+        """Extracts all fights for a given fighter.
+
+        Args:
+            fighter ([type]): fighter's id or name
+
+        Returns:
+            List[Dict]: list of fighter's fights
         """
-        Extracts all fights for a given fighter.
-        :param fighter: fighter's id or name
-        :return: given fighter's fights
-        """
-        fights = self.data[self.data["fighter"] == fighter]
+        fights = self.data[self.data["fighter"] == name]
         fights_list = fights.T.to_dict().values()
         # Sort fights from oldest to newest
         result = sorted(fights_list, key=lambda x: self.parse_date(x["date"]))
@@ -151,7 +169,9 @@ class Sequencer(object):
     def get_fighters(self) -> List[str]:
         """
         Extracts a list of fighters names.
-        :return: fighters names
+
+        Returns:
+            List: list of fighters names
         """
         return self.data["fighter"].unique().tolist()
 
@@ -164,7 +184,7 @@ class Sequencer(object):
         stats = []
         for i, current_fight in enumerate(fights, 0):
             if i == 0:
-                current_stat = self.create_empty_stat(current_fight)
+                current_stat = self.create_init_stat(current_fight)
             else:
                 # Combine information form previous fights
                 current_stat = copy.deepcopy(stats[i - 1])
@@ -172,10 +192,10 @@ class Sequencer(object):
                 previous_fight = copy.deepcopy(fights[i - 1])
                 # Update stats with current information
                 current_stat = self.create_stat(
-                    current_stat=current_stat,
-                    previous_stat=previous_stat,
-                    current_fight=current_fight,
-                    previous_fight=previous_fight,
+                    current_stat,
+                    previous_stat,
+                    current_fight,
+                    previous_fight,
                 )
             stats.append(current_stat)
 
@@ -347,8 +367,8 @@ if __name__ == "__main__":
 
     # Calculate cumulative stats
     transformer = Cumulator()
-    data = pd.read_json("data/step2.json")
-    transformed = transformer.fit_transform(data)
+    step = pd.read_json("data/step2.json")
+    transformed = transformer.fit_transform(step)
     transformed_df = pd.DataFrame.from_records(transformed)
     transformed_df.to_json("data/step3.json")
 
