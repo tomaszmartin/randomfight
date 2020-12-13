@@ -325,7 +325,7 @@ class Cumulator(Sequencer):
 if __name__ == "__main__":
     transformer = Sequencer()
     data = pd.read_csv("data/merged.csv")
-    data = data[data["result"].isin["win", loss]]
+    data = data[data["result"].isin["win", "loss"]]
     transformed = transformer.fit_transform(data)
     frame = pd.DataFrame.from_records(transformed)
     frame.to_json("data/transformed2.json")

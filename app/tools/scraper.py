@@ -80,7 +80,10 @@ async def scrape(links: List[str], func: Callable) -> List[Any]:
             except Exception as err:
                 logging.exception("Exception while parsing %s", link)
                 raise err
-            data.extend(result)
+            if not isinstance(result, list):
+                data.append(result)
+            else:
+                data.extend(result)
         return data
 
 
@@ -100,7 +103,7 @@ def batch(iterable: List[Any], size: int = 1) -> Iterable[Tuple[Any, int]]:
         yield iterable[ndx : min(ndx + size, length)], ndx
 
 
-async def fetch(url: str, session: ClientSession) -> Tuple[str, str]:
+async def fetch(url: str, session: ClientSession) -> Tuple[bytes, str]:
     """Fetches content of a single url.
 
     Args:

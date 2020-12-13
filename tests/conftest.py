@@ -35,7 +35,7 @@ def sample_event():
     path = get_path("data/event.html")
     with open(path) as input_file:
         content = input_file.read()
-        yield content
+        yield content, "https://www.sherdog.com/events/UFC-214-Cormier-vs-Jones-2-57825"
 
 
 @pytest.fixture(scope="module")

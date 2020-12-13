@@ -11,6 +11,41 @@ import re
 
 from bs4 import BeautifulSoup
 from bs4.element import Tag
+import pandas as pd
+
+
+def combine_data(fights: pd.DataFrame, fighters: pd.DataFrame) -> pd.DataFrame:
+    """Adds figter and opponent statistcs to a given fight.
+
+    Args:
+        fights (pd.DataFrame): fights data.
+        fighters (pd.DataFrame): fighters data.
+
+    Returns:
+        pd.DataFrame: combined data.
+    """
+    merged = fights.merge(fighters, on=["fighter"], how="left")
+    fighters.rename(columns={"fighter": "opponent"}, inplace=True)
+    merged.rename(
+        columns={
+            "association": "fighter association",
+            "birth": "fighter birth",
+            "height": "fighter height",
+            "nationality": "fighter nationality",
+        },
+        inplace=True,
+    )
+    merged = merged.merge(fighters, on=["opponent"], how="left")
+    merged.rename(
+        columns={
+            "association": "opponent association",
+            "birth": "opponent birth",
+            "height": "opponent height",
+            "nationality": "opponent nationality",
+        },
+        inplace=True,
+    )
+    return merged
 
 
 def extract_fighter_info(content: Optional[str], url: str) -> Dict[str, Any]:
@@ -26,7 +61,10 @@ def extract_fighter_info(content: Optional[str], url: str) -> Dict[str, Any]:
     try:
         soup = BeautifulSoup(content, "lxml")
         data: Dict[str, Any] = {"fighter": url}
-        data["birth"] = soup.find("span", {"itemprop": "birthDate"}).text
+        data["birth"] = None
+        birth_elem = soup.find("span", {"itemprop": "birthDate"})
+        if birth_elem:
+            data["birth"] = birth_elem.text
         height = soup.find("span", {"class": "height"})
         if height:
             height = height.find("strong").text
@@ -39,7 +77,10 @@ def extract_fighter_info(content: Optional[str], url: str) -> Dict[str, Any]:
             data["association"] = association.text
         else:
             data["association"] = None
-        data["nationality"] = soup.find("strong", {"itemprop": "nationality"}).text
+        data["nationality"] = None
+        nat_elem = soup.find("strong", {"itemprop": "nationality"})
+        if nat_elem:
+            data["nationality"] = nat_elem.text
         return data
     except Exception as err:
         logging.exception("Error parsing: %s", url)
@@ -59,7 +100,7 @@ def extract_fights(content: Optional[str], url: str) -> List[Dict[str, Any]]:
     """
     if not content:
         return []
-    event = _extract_event_data(content, url)
+    event = extract_event_data(content, url)
     if not event["date"] or event["date"] >= dt.date.today():
         return []
     fights = _extract_fights_from_event(content)
@@ -106,7 +147,7 @@ def _create_fight_id(fight: Dict[str, Any]) -> str:
     return result.hexdigest()
 
 
-def _extract_event_data(content: str, url: str) -> Dict[str, Any]:
+def extract_event_data(content: str, url: str) -> Dict[str, Any]:
     """Extracts data about the event.
 
     Args:
@@ -116,9 +157,9 @@ def _extract_event_data(content: str, url: str) -> Dict[str, Any]:
         dict: event information.
     """
     soup = BeautifulSoup(content, "lxml")
-    data = {
-        "title": _clean_html(soup.find("h1")),
-        "organization": soup.find("h2").text,
+    data : Dict[str, Any] = {
+        "title": _clean_text(soup.find("h1").text),
+        "organization": _clean_text(soup.find("h2").text),
         "date": None,
         "location": None,
         "url": url,
@@ -126,7 +167,7 @@ def _extract_event_data(content: str, url: str) -> Dict[str, Any]:
     info = soup.find("div", {"class": "authors_info"})
     if info:
         date_str = info.find("span", {"class": "date"}).text
-        data["date"] = dt.datetime.strptime(date_str, "%b %d, %Y").date()
+        data["date"] = _parse_date(date_str)
         location = info.find("span", {"itemprop": "location"}).text
         data["location"] = location.replace(",", " /")
 
@@ -195,11 +236,14 @@ def _create_fight(
 ) -> Optional[Dict[str, Any]]:
     try:
         data: Dict[str, Any] = {}
-        data["method"] = method_elem.text.split("\n")[0]
+        data["method"] = _clean_text(method_elem.text)
         data["method"] = data["method"].split("(")[0].lower()
         data["method"] = data["method"].replace("method ", "")
+        data["method"] = data["method"].strip()
         data["details"] = re.findall(r"(\(.*\))", method_elem.text)[0]
-        data["details"] = data["details"].replace("(", "").replace(")", "").lower()
+        data["details"] = data["details"].replace("(", "")
+        data["details"] = data["details"].replace(")", "")
+        data["details"] = data["details"].lower()
         data["result"] = result_elem.text
         data["rounds"] = int(rounds_elem.text.replace("Round", ""))
         data["time"] = _parse_time(time_elem.text, data["rounds"])
@@ -259,9 +303,18 @@ def _parse_time(text: str, rounds: int) -> float:
         raise exc
 
 
-def _clean_html(element) -> str:
+def _clean_text(element) -> str:
     raw_html = str(element)
-    raw_html = raw_html.replace("<br/>", ", ")
-    cleanr = re.compile("<.*?>")
-    cleantext = re.sub(cleanr, "", raw_html)
+    cleantext = re.sub("\n+", " ", raw_html)
+    cleantext = re.sub("\s+", " ", raw_html)
+    cleantext = cleantext.strip()
     return cleantext
+
+def _parse_date(date_str: str) -> dt.date:
+    date_str = date_str.strip()
+    for pattern in ["%b %d, %Y"]:
+        try:
+            return dt.datetime.strptime(date_str, pattern).date()
+        except:
+            pass
+    raise ValueError(f"Unable to parse date {date_str}")
