@@ -74,13 +74,13 @@ def extract_fighter_info(content: Optional[str], url: str) -> Dict[str, Any]:
             data["height"] = None
         association = soup.find("a", {"class": "association"})
         if association:
-            data["association"] = association.text
+            data["association"] = _clean_text(association.text)
         else:
             data["association"] = None
         data["nationality"] = None
         nat_elem = soup.find("strong", {"itemprop": "nationality"})
         if nat_elem:
-            data["nationality"] = nat_elem.text
+            data["nationality"] = _clean_text(nat_elem.text)
         return data
     except Exception as err:
         logging.exception("Error parsing: %s", url)
@@ -305,8 +305,8 @@ def _parse_time(text: str, rounds: int) -> float:
 
 def _clean_text(element) -> str:
     raw_html = str(element)
-    cleantext = re.sub("\n+", " ", raw_html)
-    cleantext = re.sub("\s+", " ", raw_html)
+    cleantext = re.sub(r"\n+", " ", raw_html)
+    cleantext = re.sub(r"\s+", " ", raw_html)
     cleantext = cleantext.strip()
     return cleantext
 
