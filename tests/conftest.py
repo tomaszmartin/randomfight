@@ -16,7 +16,7 @@ def sherdog_event():
     path = get_path("data/sherdog/event.html")
     with open(path) as input_file:
         content = input_file.read()
-        yield content, "https://www.sherdog.com/events/UFC-214-Cormier-vs-Jones-2-57825"
+        yield content, "http://www.sherdog.com/events/UFC-214-Cormier-vs-Jones-2-57825"
 
 
 @pytest.fixture(scope="module")
@@ -26,4 +26,14 @@ def sherdog_fighter(request):
     path = get_path("data/sherdog/fighter.html")
     with open(path) as input_file:
         content = input_file.read()
-        yield content, "https://www.sherdog.com/fighter/Jon-Jones-27944"
+        yield content, "http://www.sherdog.com/fighter/Jon-Jones-27944"
+
+
+@pytest.fixture(scope="module")
+def sherdog_opponent(request):
+    """Reads a sample opponent html and passes it to a test function.
+    :return content(str): fighter html code."""
+    path = get_path("data/sherdog/opponent.html")
+    with open(path) as input_file:
+        content = input_file.read()
+        yield content, "http://www.sherdog.com/fighter/Daniel-Cormier-52311"

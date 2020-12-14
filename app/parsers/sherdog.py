@@ -64,7 +64,7 @@ def extract_fighter_info(content: Optional[str], url: str) -> Dict[str, Any]:
         data["birth"] = None
         birth_elem = soup.find("span", {"itemprop": "birthDate"})
         if birth_elem:
-            data["birth"] = birth_elem.text
+            data["birth"] = _parse_date(birth_elem.text)
         height = soup.find("span", {"class": "height"})
         if height:
             height = height.find("strong").text
@@ -157,7 +157,7 @@ def extract_event_data(content: str, url: str) -> Dict[str, Any]:
         dict: event information.
     """
     soup = BeautifulSoup(content, "lxml")
-    data : Dict[str, Any] = {
+    data: Dict[str, Any] = {
         "title": _clean_text(soup.find("h1").text),
         "organization": _clean_text(soup.find("h2").text),
         "date": None,
@@ -244,11 +244,11 @@ def _create_fight(
         data["details"] = data["details"].replace("(", "")
         data["details"] = data["details"].replace(")", "")
         data["details"] = data["details"].lower()
-        data["result"] = result_elem.text
+        data["result"] = _clean_text(result_elem.text).lower()
         data["rounds"] = int(rounds_elem.text.replace("Round", ""))
         data["time"] = _parse_time(time_elem.text, data["rounds"])
-        data["fighter"] = fighter_elem.find("a")["href"]
-        data["opponent"] = opponent_elem.find("a")["href"]
+        data["fighter"] = "http://www.sherdog.com" + fighter_elem.find("a")["href"]
+        data["opponent"] = "http://www.sherdog.com" + opponent_elem.find("a")["href"]
         data["position"] = position
         return data
     except Exception:
@@ -310,9 +310,10 @@ def _clean_text(element) -> str:
     cleantext = cleantext.strip()
     return cleantext
 
+
 def _parse_date(date_str: str) -> dt.date:
     date_str = date_str.strip()
-    for pattern in ["%b %d, %Y"]:
+    for pattern in ["%b %d, %Y", "%Y-%m-%d"]:
         try:
             return dt.datetime.strptime(date_str, pattern).date()
         except:
