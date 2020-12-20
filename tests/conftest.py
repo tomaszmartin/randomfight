@@ -11,8 +11,7 @@ def get_path(file_path):
 
 @pytest.fixture(scope="module")
 def sherdog_event():
-    """Reads a sample event html and passes it to a test function.
-    :return content(str): event html code."""
+    """Reads a sample event html and passes it to a test function."""
     path = get_path("data/sherdog/event.html")
     with open(path) as input_file:
         content = input_file.read()
@@ -21,8 +20,7 @@ def sherdog_event():
 
 @pytest.fixture(scope="module")
 def sherdog_fighter(request):
-    """Reads a sample fighter html and passes it to a test function.
-    :return content(str): fighter html code."""
+    """Reads a sample fighter html and passes it to a test function."""
     path = get_path("data/sherdog/fighter.html")
     with open(path) as input_file:
         content = input_file.read()
@@ -31,9 +29,17 @@ def sherdog_fighter(request):
 
 @pytest.fixture(scope="module")
 def sherdog_opponent(request):
-    """Reads a sample opponent html and passes it to a test function.
-    :return content(str): fighter html code."""
+    """Reads a sample opponent html and passes it to a test function."""
     path = get_path("data/sherdog/opponent.html")
     with open(path) as input_file:
         content = input_file.read()
         yield content, "http://www.sherdog.com/fighter/Daniel-Cormier-52311"
+
+
+@pytest.fixture(scope="module")
+def sherdog_events_list(request):
+    """Reads a sample event list html and passes it to a test function."""
+    path = get_path("data/sherdog/events_list.html")
+    with open(path) as input_file:
+        content = input_file.read()
+        yield content, "http://www.sherdog.com/events/0"

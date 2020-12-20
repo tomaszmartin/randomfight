@@ -132,8 +132,9 @@ def extract_events_links(content: Optional[str], url: str) -> List[str]:
     domain = "{uri.scheme}://{uri.netloc}".format(uri=parsed_uri)
     soup = BeautifulSoup(content, "lxml")
     links = soup.find_all("a", href=re.compile("events"))
-    events = [domain + link["href"] for link in links]
-    return events
+    events = {domain + link["href"] for link in links}
+    events = {link for link in events if "events/" in link}
+    return sorted(list(events))
 
 
 def _create_fight_id(fight: Dict[str, Any]) -> str:
