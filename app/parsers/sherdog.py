@@ -5,13 +5,14 @@ import datetime as dt
 import logging
 from typing import Any, Dict, List, Optional
 from urllib.parse import urlparse
-
 import hashlib
 import re
 
 from bs4 import BeautifulSoup
 from bs4.element import Tag
 import pandas as pd
+
+from app.parsers import base
 
 
 def combine_data(fights: pd.DataFrame, fighters: pd.DataFrame) -> pd.DataFrame:
@@ -64,7 +65,7 @@ def extract_fighter_info(content: Optional[str], url: str) -> Dict[str, Any]:
         data["birth"] = None
         birth_elem = soup.find("span", {"itemprop": "birthDate"})
         if birth_elem:
-            data["birth"] = _parse_date(birth_elem.text)
+            data["birth"] = base.extract_date(birth_elem.text)
         height = soup.find("span", {"class": "height"})
         if height:
             height = height.find("strong").text
@@ -74,13 +75,13 @@ def extract_fighter_info(content: Optional[str], url: str) -> Dict[str, Any]:
             data["height"] = None
         association = soup.find("a", {"class": "association"})
         if association:
-            data["association"] = _clean_text(association.text)
+            data["association"] = base.remove_whitespace(association.text)
         else:
             data["association"] = None
         data["nationality"] = None
         nat_elem = soup.find("strong", {"itemprop": "nationality"})
         if nat_elem:
-            data["nationality"] = _clean_text(nat_elem.text)
+            data["nationality"] = base.remove_whitespace(nat_elem.text)
         return data
     except Exception as err:
         logging.exception("Error parsing: %s", url)
@@ -159,8 +160,8 @@ def extract_event_data(content: str, url: str) -> Dict[str, Any]:
     """
     soup = BeautifulSoup(content, "lxml")
     data: Dict[str, Any] = {
-        "title": _clean_text(soup.find("h1").text),
-        "organization": _clean_text(soup.find("h2").text),
+        "title": base.remove_whitespace(soup.find("h1").text),
+        "organization": base.remove_whitespace(soup.find("h2").text),
         "date": None,
         "location": None,
         "url": url,
@@ -168,7 +169,7 @@ def extract_event_data(content: str, url: str) -> Dict[str, Any]:
     info = soup.find("div", {"class": "authors_info"})
     if info:
         date_str = info.find("span", {"class": "date"}).text
-        data["date"] = _parse_date(date_str)
+        data["date"] = base.extract_date(date_str)
         location = info.find("span", {"itemprop": "location"}).text
         data["location"] = location.replace(",", " /")
 
@@ -237,7 +238,7 @@ def _create_fight(
 ) -> Optional[Dict[str, Any]]:
     try:
         data: Dict[str, Any] = {}
-        data["method"] = _clean_text(method_elem.text)
+        data["method"] = base.remove_whitespace(method_elem.text)
         data["method"] = data["method"].split("(")[0].lower()
         data["method"] = data["method"].replace("method ", "")
         data["method"] = data["method"].strip()
@@ -245,7 +246,7 @@ def _create_fight(
         data["details"] = data["details"].replace("(", "")
         data["details"] = data["details"].replace(")", "")
         data["details"] = data["details"].lower()
-        data["result"] = _clean_text(result_elem.text).lower()
+        data["result"] = base.remove_whitespace(result_elem.text).lower()
         data["rounds"] = int(rounds_elem.text.replace("Round", ""))
         data["time"] = _parse_time(time_elem.text, data["rounds"])
         data["fighter"] = "http://www.sherdog.com" + fighter_elem.find("a")["href"]
@@ -302,21 +303,3 @@ def _parse_time(text: str, rounds: int) -> float:
     except Exception as exc:
         logging.exception("Error parsing time from: %s", time)
         raise exc
-
-
-def _clean_text(element) -> str:
-    raw_html = str(element)
-    cleantext = re.sub(r"\n+", " ", raw_html)
-    cleantext = re.sub(r"\s+", " ", raw_html)
-    cleantext = cleantext.strip()
-    return cleantext
-
-
-def _parse_date(date_str: str) -> dt.date:
-    date_str = date_str.strip()
-    for pattern in ["%b %d, %Y", "%Y-%m-%d"]:
-        try:
-            return dt.datetime.strptime(date_str, pattern).date()
-        except:
-            pass
-    raise ValueError(f"Unable to parse date {date_str}")
