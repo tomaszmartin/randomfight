@@ -10,7 +10,6 @@ def test_events_list_parsing(sherdog_events_list):
     page_content, page_url = sherdog_events_list
     links = sherdog.extract_events_links(page_content, page_url)
     actuall = [
-        "http://www.sherdog.com/events/",
         "http://www.sherdog.com/events/247-FC-Brawl-In-The-Burgh-4-86700",
         "http://www.sherdog.com/events/247-FC-Brawl-in-the-Burgh-5-87932",
         "http://www.sherdog.com/events/ACA-114-Omielanczuk-vs-Johnson-87933",
@@ -196,7 +195,6 @@ def test_events_list_parsing(sherdog_events_list):
         "http://www.sherdog.com/events/ZFC-5-Zeus-Fighting-Championship-5-87478",
         "http://www.sherdog.com/events/iFF-3-iKon-Fighting-Federation-3-88014",
         "http://www.sherdog.com/events/iFF-4-iKon-Fighting-Federation-4-88182",
-        "http://www.sherdog.com/events/recent/3-page",
     ]
     assert links == actuall
 

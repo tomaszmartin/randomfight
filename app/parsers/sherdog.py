@@ -135,6 +135,8 @@ def extract_events_links(content: Optional[str], url: str) -> List[str]:
     links = soup.find_all("a", href=re.compile("events"))
     events = {domain + link["href"] for link in links}
     events = {link for link in events if "events/" in link}
+    events = {link for link in events if not link.endswith("events/")}
+    events = {link for link in events if not link.endswith("-page")}
     return sorted(list(events))
 
 
