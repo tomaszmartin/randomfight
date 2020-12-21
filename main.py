@@ -1,13 +1,21 @@
+import datetime as dt
 import logging
 from typing import List
+import os
 
 import pandas as pd
 
 from app.tools import scraper
 from app.parsers import sherdog
 
+logging.basicConfig(
+    format="[%(levelname)s %(asctime)s %(module)s:%(funcName)s] %(message)s",
+    datefmt="%Y.%m.%d %H:%M:%S",
+    level=logging.INFO,
+)
 
-def geenerate_event_listing_uris(start: int = 1, end: int = 500):
+
+def generate_event_listing_uris(start: int = 1, end: int = 500):
     """Generates uris for listing pages where all events
     links are listed.
 
@@ -21,25 +29,35 @@ def geenerate_event_listing_uris(start: int = 1, end: int = 500):
     baseuri = "http://www.sherdog.com/events/recent/{}-page"
     return [baseuri.format(i) for i in range(start, end)]
 
+
 def extract_fights(filename: str):
     """Extracts fights and saves them in a specified filename.
 
     Args:
         filename (str): file name where data should be saved.
     """
-    data = pd.read_csv(filename)
-    scraped = data["url"].unique().tolist()
-    lists = generate_event_listing_uris()
+    data = pd.DataFrame()
+    scraped = []
+    if os.path.exists(filename):
+        data = pd.read_csv(filename)
+        scraped = data["url"].unique().tolist()
+        data["date"] = data["date"].apply(
+            lambda x: dt.datetime.strptime(x, "%Y-%m-%d").date()
+        )
+
+    lists = generate_event_listing_uris(1, 100)
     for i, listing_url in enumerate(lists):
         listing_content = scraper.get_content(listing_url)
         events = sherdog.extract_events_links(listing_content, listing_url)
         events = list(set(events).difference(set(scraped)))
-        logging.info("[%s:%s]: Scraping events.", i, len(lists))
         if events:
             fights = scraper.run(events, sherdog.extract_fights, 25)
             curr_frame = pd.DataFrame(fights)
             data = data.append(curr_frame)
+            data = data.sort_values(by=["date"])
+            last_date = data.iloc[0]["date"]
             data.to_csv(filename, index=False)
+            logging.info("[%s:%s]: Scraped events up to %s", i, len(lists), last_date)
 
 
 def extract_fighters(fighters: List[str], filename: str):
@@ -60,9 +78,5 @@ def extract_fighters(fighters: List[str], filename: str):
 
 
 if __name__ == "__main__":
-    data = pd.read_csv("data/fights.csv")
-    fighters = [
-        f"http://www.sherdog.com/{fighter}"
-        for fighter in data["fighter"].unique().tolist()
-    ]
-    extract_fighters(fighters, "data/fighters.csv")
+    filename = "data/fights.csv"
+    extract_fights(filename)

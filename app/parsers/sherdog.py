@@ -102,7 +102,7 @@ def extract_fights(content: Optional[str], url: str) -> List[Dict[str, Any]]:
     if not content:
         return []
     event = extract_event_data(content, url)
-    if not event["date"] or event["date"] >= dt.date.today():
+    if not event or not event["date"] or event["date"] >= dt.date.today():
         return []
     fights = _extract_fights_from_event(content)
     # Add event info to the fights
