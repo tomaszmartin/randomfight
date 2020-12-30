@@ -55,9 +55,8 @@ def extract_fights(filename: str):
             curr_frame = pd.DataFrame(fights)
             data = data.append(curr_frame)
             data = data.sort_values(by=["date"])
-            last_date = data.iloc[0]["date"]
             data.to_csv(filename, index=False)
-            logging.info("[%s:%s]: Scraped events up to %s", i, len(lists), last_date)
+            logging.info("[%s:%s]: Scraped %s fights", i, len(lists), len(data))
 
 
 def extract_fighters(fighters: List[str], filename: str):
@@ -67,7 +66,10 @@ def extract_fighters(fighters: List[str], filename: str):
         fighters (List[str]): list of fighters urls.
         filename (str): file name where data should be saved.
     """
-    data = pd.read_csv(filename)
+    data = pd.DataFrame()
+    if os.path.exists(filename):
+        data = pd.read_csv(filename)
+
     for batch, i in scraper.batch(fighters, 100):
         done = data["fighter"].unique().tolist()
         batch = list(set(batch).difference(set(done)))
@@ -78,5 +80,4 @@ def extract_fighters(fighters: List[str], filename: str):
 
 
 if __name__ == "__main__":
-    filename = "data/fights.csv"
-    extract_fights(filename)
+    extract_fights("data/fights.csv")

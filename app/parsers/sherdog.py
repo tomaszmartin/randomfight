@@ -161,8 +161,11 @@ def extract_event_data(content: str, url: str) -> Dict[str, Any]:
         dict: event information.
     """
     soup = BeautifulSoup(content, "lxml")
+    title = soup.find("h1")
+    if not title:
+        return {}
     data: Dict[str, Any] = {
-        "title": base.remove_whitespace(soup.find("h1").text),
+        "title": base.remove_whitespace(title.text),
         "organization": base.remove_whitespace(soup.find("h2").text),
         "date": None,
         "location": None,
@@ -238,25 +241,32 @@ def _create_fight(
     time_elem: Tag,
     position: Tag,
 ) -> Optional[Dict[str, Any]]:
-    try:
-        data: Dict[str, Any] = {}
-        data["method"] = base.remove_whitespace(method_elem.text)
-        data["method"] = data["method"].split("(")[0].lower()
-        data["method"] = data["method"].replace("method ", "")
-        data["method"] = data["method"].strip()
-        data["details"] = re.findall(r"(\(.*\))", method_elem.text)[0]
-        data["details"] = data["details"].replace("(", "")
-        data["details"] = data["details"].replace(")", "")
-        data["details"] = data["details"].lower()
-        data["result"] = base.remove_whitespace(result_elem.text).lower()
-        data["rounds"] = int(rounds_elem.text.replace("Round", ""))
-        data["time"] = _parse_time(time_elem.text, data["rounds"])
-        data["fighter"] = "http://www.sherdog.com" + fighter_elem.find("a")["href"]
-        data["opponent"] = "http://www.sherdog.com" + opponent_elem.find("a")["href"]
-        data["position"] = position
-        return data
-    except Exception:
-        return None
+    data: Dict[str, Any] = {}
+    data["method"] = base.remove_whitespace(method_elem.text)
+    data["method"] = data["method"].split("(")[0].lower()
+    data["method"] = data["method"].replace("method ", "")
+    data["method"] = data["method"].strip()
+    data["details"] = re.findall(r"(\(.*\))", method_elem.text)
+    if not data["details"]:
+        return {}
+    data["details"] = data["details"][0].replace("(", "")
+    data["details"] = data["details"].replace(")", "")
+    data["details"] = data["details"].lower()
+    data["result"] = base.remove_whitespace(result_elem.text).lower()
+    data["rounds"] = int(rounds_elem.text.replace("Round", ""))
+    data["time"] = _parse_time(time_elem.text, data["rounds"])
+    data["fighter"] = _extract_fighter_id(fighter_elem)
+    data["opponent"] = _extract_fighter_id(opponent_elem)
+    data["position"] = position
+    return data
+
+
+def _extract_fighter_id(elem: Tag) -> str:
+    url = elem.find("a")["href"]
+    base_url = "http://www.sherdog.com"
+    if "javascript" in url:
+        return base.remove_whitespace(elem.find("h3").text)
+    return base_url + url
 
 
 def _parse_time(text: str, rounds: int) -> float:

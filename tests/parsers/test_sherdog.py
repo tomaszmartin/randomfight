@@ -610,3 +610,20 @@ def test_combining_fight_and_fighters(sherdog_event, sherdog_fighter, sherdog_op
         "opponent association": "American Kickboxing Academy",
         "opponent nationality": "United States",
     }
+
+
+def test_void_fighter():
+    html = """
+    <div class="fighter right_side" itemprop="performer" itemscope="" itemtype="http://schema.org/Person">
+        <a href="javascript:void();" itemprop="url">
+            <img itemprop="image" src="/image_crop/72/72/_images/fighter_small_default.jpg" alt="Unknown Fighter" title="Unknown Fighter">
+        </a>
+        <h3>
+        <a href="javascript:void();"><span itemprop="name">Unknown Fighter</span></a>
+        </h3>
+        <span class="final_result loss">loss</span>
+        <span class="record"> -  -  <em>(Win - Loss - Draw)</em> </span>
+    </div>
+    """
+    soup = BeautifulSoup(html, "lxml")
+    assert sherdog._extract_fighter_id(soup) == "Unknown Fighter"
