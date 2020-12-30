@@ -27,16 +27,14 @@ class Sequencer:
         :param raw: fights data
         :return: fights data from fighter and opponents perspective
         """
-        data = pd.DataFrame(raw)
-        opponent = pd.DataFrame(raw)
-        data["id"] = data["fighter"] + data["opponent"] + data["title"]
+        data = raw.copy(deep=True)
+        opponent = raw.copy(deep=True)
         opponent.rename(
             columns={"fighter": "opponent", "opponent": "fighter"}, inplace=True
         )
         opponent["result"] = "loss"
         data = data.append(opponent)
         data = data.sort_values(by=["fighter"])
-
         return data
 
     @staticmethod
@@ -348,32 +346,3 @@ class Cumulator(Sequencer):
             current = self.build_stats(fights)
             self.transformed.extend(current)  # not append!
         return self.transformed
-
-
-if __name__ == "__main__":
-    transformer = Sequencer()
-    # Calculate pre-fight stats
-    # data = pd.read_csv('data/data.csv')
-    # data = data[data['result'].isin(['win', 'loss'])]
-    # transformed = transformer.fit_transform(data)
-    # frame = pd.DataFrame.from_records(transformed)
-    # frame.to_json('data/step1.json')
-
-    # Exchange stats
-    # transformed = pd.read_json('data/step1.json').to_dict('records')
-    # exchanged = transformer.exchange(transformed)
-    # final = pd.DataFrame.from_records(exchanged)
-    # final.to_json('data/step2.json')
-
-    # Calculate cumulative stats
-    transformer = Cumulator()
-    step = pd.read_json("data/step2.json")
-    transformed = transformer.fit_transform(step)
-    transformed_df = pd.DataFrame.from_records(transformed)
-    transformed_df.to_json("data/step3.json")
-
-    # Exchange stats
-    transformed = pd.read_json("data/step3.json").to_dict("records")
-    exchanged = transformer.exchange(transformed)
-    final = pd.DataFrame.from_records(exchanged)
-    final.to_json("data/final.json")

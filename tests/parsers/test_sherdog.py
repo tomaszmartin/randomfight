@@ -612,11 +612,12 @@ def test_combining_fight_and_fighters(sherdog_event, sherdog_fighter, sherdog_op
     }
 
 
-def test_void_fighter():
+def test_void_main_fighter():
     html = """
     <div class="fighter right_side" itemprop="performer" itemscope="" itemtype="http://schema.org/Person">
         <a href="javascript:void();" itemprop="url">
-            <img itemprop="image" src="/image_crop/72/72/_images/fighter_small_default.jpg" alt="Unknown Fighter" title="Unknown Fighter">
+            <img itemprop="image" src="/image_crop/72/72/_images/fighter_small_default.jpg" 
+                 alt="Unknown Fighter" title="Unknown Fighter">
         </a>
         <h3>
         <a href="javascript:void();"><span itemprop="name">Unknown Fighter</span></a>
@@ -624,6 +625,23 @@ def test_void_fighter():
         <span class="final_result loss">loss</span>
         <span class="record"> -  -  <em>(Win - Loss - Draw)</em> </span>
     </div>
+    """
+    soup = BeautifulSoup(html, "lxml")
+    assert sherdog._extract_fighter_id(soup) == "Unknown Fighter"
+
+
+def test_void_other_fighter():
+    html = """
+    <td class="text_left col_fc_upcoming" itemprop="performer" itemscope="" itemtype="http://schema.org/Person">
+        <meta itemprop="image" content="/image_crop/44/44/_images/fighter_small_default.jpg">
+        <img height="44" width="44" class="lazy" src="/image_crop/44/44/_images/fighter_small_default.jpg" 
+             data-original="/image_crop/44/44/_images/fighter_small_default.jpg" 
+             alt="Unknown Fighter" title="Unknown Fighter">
+        <div class="fighter_result_data">
+            <a itemprop="url" href="javascript:void();"><span itemprop="name">Unknown Fighter</span></a><br>
+            <span class="final_result loss">loss</span>
+        </div>
+    </td>
     """
     soup = BeautifulSoup(html, "lxml")
     assert sherdog._extract_fighter_id(soup) == "Unknown Fighter"

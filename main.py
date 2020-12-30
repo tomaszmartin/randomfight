@@ -7,6 +7,7 @@ import pandas as pd
 
 from app.tools import scraper
 from app.parsers import sherdog
+from app.transformers.sherdog import Sequencer, Cumulator
 
 logging.basicConfig(
     format="[%(levelname)s %(asctime)s %(module)s:%(funcName)s] %(message)s",
@@ -39,13 +40,13 @@ def extract_fights(filename: str):
     data = pd.DataFrame()
     scraped = []
     if os.path.exists(filename):
-        data = pd.read_csv(filename)
+        data = pd.read_csv(filename, low_memory=False)
         scraped = data["url"].unique().tolist()
         data["date"] = data["date"].apply(
             lambda x: dt.datetime.strptime(x, "%Y-%m-%d").date()
         )
 
-    lists = generate_event_listing_uris(1, 100)
+    lists = generate_event_listing_uris(100, 500)
     for i, listing_url in enumerate(lists):
         listing_content = scraper.get_content(listing_url)
         events = sherdog.extract_events_links(listing_content, listing_url)
@@ -79,5 +80,34 @@ def extract_fighters(fighters: List[str], filename: str):
         data.to_csv(filename, index=False)
 
 
+def transform_fights(data):
+    transformer = Sequencer()
+    # Calculate pre-fight stats
+    data = data[data["result"].isin(["win", "loss"])]
+    transformed = transformer.fit_transform(data)
+    frame = pd.DataFrame.from_records(transformed)
+    frame.to_json("data/step1.json", "records")
+
+    # Exchange stats
+    transformed = pd.read_json("data/step1.json").to_dict("records")
+    exchanged = transformer.exchange(transformed)
+    frame = pd.DataFrame.from_records(exchanged)
+    frame.to_json("data/step2.json", "records")
+
+    # Calculate cumulative stats
+    transformer = Cumulator()
+    step = pd.read_json("data/step2.json")
+    transformed = transformer.fit_transform(step)
+    transformed_df = pd.DataFrame.from_records(transformed)
+    transformed_df.to_json("data/step3.json")
+
+    # Exchange stats
+    transformed = pd.read_json("data/step3.json").to_dict("records")
+    exchanged = transformer.exchange(transformed)
+    frame = pd.DataFrame.from_records(exchanged)
+    frame.to_json("data/final.json")
+
+
 if __name__ == "__main__":
-    extract_fights("data/fights.csv")
+    data = pd.read_csv("data/fights.csv")
+    transform_fights(data)

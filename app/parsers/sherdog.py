@@ -265,7 +265,12 @@ def _extract_fighter_id(elem: Tag) -> str:
     url = elem.find("a")["href"]
     base_url = "http://www.sherdog.com"
     if "javascript" in url:
-        return base.remove_whitespace(elem.find("h3").text)
+        # For main event fight
+        text_elem = elem.find("h3")
+        if not text_elem:
+            # For other fights
+            text_elem = elem.find("a")
+        return base.remove_whitespace(text_elem.text)
     return base_url + url
 
 
