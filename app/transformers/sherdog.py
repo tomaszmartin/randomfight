@@ -3,6 +3,8 @@ import copy
 import time
 import datetime as dt
 from typing import Any, Dict, List
+import logging
+
 import pandas as pd
 
 
@@ -206,7 +208,7 @@ class Sequencer:
         start = time.time()
         for i, idx in enumerate(ids):
             if i % 1000 == 0:
-                print(
+                logging.info(
                     "Exchanging data {} from {} in {:.2f}".format(
                         i, len(ids), time.time() - start
                     )
@@ -224,7 +226,7 @@ class Sequencer:
                 result.append(fighter)
                 result.append(opponent)
             else:
-                print("Error exchanging {}".format(i))
+                logging.warning("Error exchanging {}".format(i))
 
         return result
 
@@ -235,7 +237,7 @@ class Sequencer:
         start = time.time()
         for i, fighter in enumerate(fighters):
             if i % 1000 == 0:
-                print(
+                logging.info(
                     "Working on {} fighter out of {} in {:.2f}".format(
                         i, len(fighters), time.time() - start
                     )
@@ -336,7 +338,7 @@ class Cumulator(Sequencer):
         num_of_fighters = len(fighters)
         for i, fighter in enumerate(fighters):
             if i % 1000 == 0:
-                print(
+                logging.info(
                     "Transformed {} out of {} stats for {:.2f} seconds".format(
                         i, num_of_fighters, time.time() - start
                     )

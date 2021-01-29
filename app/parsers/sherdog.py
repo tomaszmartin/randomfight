@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 from bs4.element import Tag
 import pandas as pd
 
-from app.parsers import base
+from app.parsers import common
 
 
 def combine_data(fights: pd.DataFrame, fighters: pd.DataFrame) -> pd.DataFrame:
@@ -65,7 +65,7 @@ def extract_fighter_info(content: Optional[str], url: str) -> Dict[str, Any]:
         data["birth"] = None
         birth_elem = soup.find("span", {"itemprop": "birthDate"})
         if birth_elem:
-            data["birth"] = base.extract_date(birth_elem.text)
+            data["birth"] = common.extract_date(birth_elem.text)
         height = soup.find("span", {"class": "height"})
         if height:
             height = height.find("strong").text
@@ -75,13 +75,13 @@ def extract_fighter_info(content: Optional[str], url: str) -> Dict[str, Any]:
             data["height"] = None
         association = soup.find("a", {"class": "association"})
         if association:
-            data["association"] = base.remove_whitespace(association.text)
+            data["association"] = common.remove_whitespace(association.text)
         else:
             data["association"] = None
         data["nationality"] = None
         nat_elem = soup.find("strong", {"itemprop": "nationality"})
         if nat_elem:
-            data["nationality"] = base.remove_whitespace(nat_elem.text)
+            data["nationality"] = common.remove_whitespace(nat_elem.text)
         return data
     except Exception as err:
         logging.exception("Error parsing: %s", url)
@@ -165,8 +165,8 @@ def extract_event_data(content: str, url: str) -> Dict[str, Any]:
     if not title:
         return {}
     data: Dict[str, Any] = {
-        "title": base.remove_whitespace(title.text),
-        "organization": base.remove_whitespace(soup.find("h2").text),
+        "title": common.remove_whitespace(title.text),
+        "organization": common.remove_whitespace(soup.find("h2").text),
         "date": None,
         "location": None,
         "url": url,
@@ -174,7 +174,7 @@ def extract_event_data(content: str, url: str) -> Dict[str, Any]:
     info = soup.find("div", {"class": "authors_info"})
     if info:
         date_str = info.find("span", {"class": "date"}).text
-        data["date"] = base.extract_date(date_str)
+        data["date"] = common.extract_date(date_str)
         location = info.find("span", {"itemprop": "location"}).text
         data["location"] = location.replace(",", " /")
 
@@ -232,6 +232,7 @@ def _extract_other_fights_from_event(
     return data
 
 
+# pylint: disable=too-many-arguments
 def _create_fight(
     fighter_elem: Tag,
     opponent_elem: Tag,
@@ -242,7 +243,7 @@ def _create_fight(
     position: Tag,
 ) -> Optional[Dict[str, Any]]:
     data: Dict[str, Any] = {}
-    data["method"] = base.remove_whitespace(method_elem.text)
+    data["method"] = common.remove_whitespace(method_elem.text)
     data["method"] = data["method"].split("(")[0].lower()
     data["method"] = data["method"].replace("method ", "")
     data["method"] = data["method"].strip()
@@ -252,7 +253,7 @@ def _create_fight(
     data["details"] = data["details"][0].replace("(", "")
     data["details"] = data["details"].replace(")", "")
     data["details"] = data["details"].lower()
-    data["result"] = base.remove_whitespace(result_elem.text).lower()
+    data["result"] = common.remove_whitespace(result_elem.text).lower()
     data["rounds"] = int(rounds_elem.text.replace("Round", ""))
     data["time"] = _parse_time(time_elem.text, data["rounds"])
     data["fighter"] = _extract_fighter_id(fighter_elem)
@@ -270,7 +271,7 @@ def _extract_fighter_id(elem: Tag) -> str:
         if not text_elem:
             # For other fights
             text_elem = elem.find("a")
-        return base.remove_whitespace(text_elem.text)
+        return common.remove_whitespace(text_elem.text)
     return base_url + url
 
 
