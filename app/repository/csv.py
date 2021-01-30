@@ -6,7 +6,7 @@ import pandas as pd
 from app.repository import base
 
 
-class CSVRepository(base.DataRepository):
+class CSVRepository(base.AbstractRepository):
     """Persists data in a CSV file."""
 
     def __init__(self, path: str, id_column: str) -> None:

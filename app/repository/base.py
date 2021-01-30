@@ -3,7 +3,7 @@ import abc
 from typing import Dict, Optional
 
 
-class DataRepository(abc.ABC):
+class AbstractRepository(abc.ABC):
     """Abstract class for handling persistance of data."""
 
     def get(self, identifier: str) -> Optional[Dict]:
