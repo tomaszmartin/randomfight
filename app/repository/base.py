@@ -23,8 +23,8 @@ class AbstractRepository(abc.ABC):
 
     def add(self, data: Dict) -> None:
         """Inserts object into the repository. This will not persist
-        the object, only store it temporarly. For persistance call
-        commit.
+        the object, only store it temporarly in memory.
+        For persistance call commit.
 
         Args:
             data: data to be stored.
@@ -33,6 +33,17 @@ class AbstractRepository(abc.ABC):
 
     @abc.abstractmethod
     def _add(self, data: Dict) -> None:
+        raise NotImplementedError
+
+    def commit(self) -> None:
+        """Persists data from memory to drive.
+        Similar in effect to SQL commit, or
+        saving file to a disk.
+        """
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def _commit(self) -> None:
         raise NotImplementedError
 
 

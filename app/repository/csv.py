@@ -26,13 +26,16 @@ class CSVRepository(base.AbstractRepository):
         if len(results) == 1:
             return results[0]
         if len(results) > 1:
-            msg = f"Duplicate entries for {identifier}"
+            msg = f"Duplicate entries for id: {identifier}"
             raise base.DataIntegrityError(msg)
         return None
 
     def _add(self, data: Dict) -> None:
         current_id = data[self.id_column]
         if self.get(current_id):
-            msg = f"Instance with {current_id} already in repository!"
+            msg = f"Instance with id: {current_id} already in repository!"
             raise base.DataIntegrityError(msg)
         self.data = self.data.append(data, ignore_index=True)
+
+    def _commit(self):
+        self.data.to_csv(self.path)

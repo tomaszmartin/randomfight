@@ -25,7 +25,7 @@ def extract_fights(repo: base.AbstractRepository):
     """Extracts fights and saves them in a specified filename.
 
     Args:
-        filename (str): file name where data should be saved.
+        repo: repository that provides data persistance functionalities.
     """
     lists = generate_event_listing_uris(1, 500)
     scraped: Set[str] = set()  # TODO: should contain scraped data
@@ -37,4 +37,4 @@ def extract_fights(repo: base.AbstractRepository):
             fights = scraper.run(events, sherdog.extract_fights, 25)
             for fight in fights:
                 repo.add(fight)
-        # TODO: commit to repository
+        repo.commit()
