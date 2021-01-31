@@ -44,7 +44,48 @@ def extract_fights(repo: repository.AbstractRepository) -> None:
         events = sherdog.extract_events_links(listing_content, listing_url)
         events = list(set(events).difference(set(scraped)))
         if events:
-            fights = scraper.run(events, sherdog.extract_fights, 25)
-            for fight in fights:
-                repo.add(fight)
+            results = scraper.run(events, sherdog.extract_fights, 25)
+            for result in results:
+                repo.add(result)
         repo.commit()
+
+
+def extract_fighters(fighters: list, repo: repository.AbstractRepository) -> None:
+    """Extracts fighters and saves them in a specified filename.
+
+    Args:
+        fighters (List[str]): list of fighters urls.
+        filename (str): file name where data should be saved.
+    """
+    for batch, i in scraper.batch(fighters, 100):
+        scraped: Set[str] = set()  # TODO: should contain scraped data
+        batch = list(set(batch).difference(set(scraped)))
+        logging.info("[%s:%s]: Scraping fighters.", i, len(fighters))
+        results = scraper.run(batch, sherdog.extract_fighter_info, 25)
+        for result in results:
+            repo.add(result)
+        repo.commit()
+
+
+def transform_fights(data: pd.DataFrame, repo: repository.AbstractRepository) -> None:
+    """From a sequence of n fight stats it creates
+    fighters 2n (n for each fighter) results in time.
+
+    Args:
+        data: fights stats.
+        repo: repository where data should be stored.
+    """
+    sequencer = Sequencer()
+    cumulator = Cumulator()
+    # Calculate pre-fight stats
+    data = data[data["result"].isin(["win", "loss"])]
+    sequences = sequencer.fit_transform(data)
+    # Exchange stats
+    exchanged = sequencer.exchange(sequences)
+    # Calculate cumulative stats
+    accumulated = cumulator.fit_transform(exchanged)
+    # Exchange stats
+    results = cumulator.exchange(accumulated)
+    for result in results:
+        repo.add(result)
+    repo.commit()
