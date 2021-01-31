@@ -2,8 +2,11 @@
 import logging
 from typing import Set
 
+import pandas as pd
+
 from app.tools import scraper, repository
 from app.parsers import sherdog
+from app.transformers.sherdog import Sequencer, Cumulator
 
 logging.basicConfig(
     format="[%(levelname)s %(asctime)s %(module)s:%(funcName)s] %(message)s",
@@ -27,7 +30,7 @@ def generate_event_listing_uris(start: int = 1, end: int = 500):
     return [baseuri.format(i) for i in range(start, end)]
 
 
-def extract_fights(repo: repository.AbstractRepository):
+def extract_fights(repo: repository.AbstractRepository) -> None:
     """Extracts fights and saves them in a specified filename.
 
     Args:

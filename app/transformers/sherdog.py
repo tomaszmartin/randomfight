@@ -246,7 +246,7 @@ class Sequencer:
             fights = self.get_fights_for_fighter(fighter)
             current = self.build_stats(fights)
             transformed.extend(current)
-        return transformed
+        return pd.DataFrame(transformed)
 
     def fit_transform(self, data):
         """Transforms fight stats into sequences."""
@@ -347,4 +347,4 @@ class Cumulator(Sequencer):
             fights = self.get_fights_for_fighter(fighter)
             current = self.build_stats(fights)
             self.transformed.extend(current)  # not append!
-        return self.transformed
+        return pd.DataFrame(self.transformed)

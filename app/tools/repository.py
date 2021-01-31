@@ -43,7 +43,7 @@ class AbstractRepository(abc.ABC):
         Similar in effect to SQL commit, or
         saving file to a disk.
         """
-        raise NotImplementedError
+        self._commit()
 
     @abc.abstractmethod
     def _commit(self) -> None:
@@ -77,6 +77,8 @@ class CSVRepository(AbstractRepository):
             self.data = pd.DataFrame()
 
     def _get(self, identifier: str) -> Optional[Dict]:
+        if self.data.empty:
+            return None
         subset = self.data.loc[self.data[self.id_column] == identifier]
         results = subset.to_dict("records")
         if len(results) == 1:
