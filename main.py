@@ -5,9 +5,10 @@ import os
 
 import pandas as pd
 
-from app.tools import scraper
+from app.tools import scraper, repository
 from app.parsers import sherdog
 from app.transformers.sherdog import Sequencer, Cumulator
+from app.service import services
 
 logging.basicConfig(
     format="[%(levelname)s %(asctime)s %(module)s:%(funcName)s] %(message)s",
@@ -65,5 +66,5 @@ def transform_fights(data):
 
 
 if __name__ == "__main__":
-    data = pd.read_csv("data/fights.csv")
-    transform_fights(data)
+    repo = repository.CSVRepository("data/fights.csv", id_column="id")
+    services.extract_fights(repo)

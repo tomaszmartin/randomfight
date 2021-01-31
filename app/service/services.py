@@ -1,9 +1,15 @@
 """Provides domain specific functionality."""
+import logging
 from typing import Set
 
-from app.repository import base
-from app.tools import scraper
+from app.tools import scraper, repository
 from app.parsers import sherdog
+
+logging.basicConfig(
+    format="[%(levelname)s %(asctime)s %(module)s:%(funcName)s] %(message)s",
+    datefmt="%Y.%m.%d %H:%M:%S",
+    level=logging.INFO,
+)
 
 
 def generate_event_listing_uris(start: int = 1, end: int = 500):
@@ -21,7 +27,7 @@ def generate_event_listing_uris(start: int = 1, end: int = 500):
     return [baseuri.format(i) for i in range(start, end)]
 
 
-def extract_fights(repo: base.AbstractRepository):
+def extract_fights(repo: repository.AbstractRepository):
     """Extracts fights and saves them in a specified filename.
 
     Args:
@@ -29,7 +35,8 @@ def extract_fights(repo: base.AbstractRepository):
     """
     lists = generate_event_listing_uris(1, 500)
     scraped: Set[str] = set()  # TODO: should contain scraped data
-    for _, listing_url in enumerate(lists):
+    for listing_url in lists:
+        logging.info("Scraping %s", listing_url)
         listing_content = scraper.get_content(listing_url)
         events = sherdog.extract_events_links(listing_content, listing_url)
         events = list(set(events).difference(set(scraped)))
