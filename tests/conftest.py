@@ -2,6 +2,8 @@
 import pytest
 import os
 
+from tests import fakes
+
 
 def get_path(file_path):
     main_path = os.path.dirname(__file__)
@@ -43,3 +45,8 @@ def sherdog_events_list(request):
     with open(path) as input_file:
         content = input_file.read()
         yield content, "http://www.sherdog.com/events/0"
+
+
+@pytest.fixture
+def fight_repository():
+    return fakes.FakeRepository("id")
