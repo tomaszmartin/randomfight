@@ -1,7 +1,7 @@
 aiohttp==3.7.2
 bs4==0.0.1
 click==7.1.2
-lxml==4.6.2
+lxml==4.6.3
 mypy==0.790
 pandas==1.1.4
 pandas-stubs==1.0.4.2
